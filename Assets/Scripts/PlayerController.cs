@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour
 
     // Closed-access information variables about the player
     [Header("Player Statistics")]
-    Vector2 _movement_direction;
+    Vector2 _movementDirection;
 
     // Public player stats and abilities
     [Header("Player Attributes")]
-    public float player_speed = 4f;
+    public float playerSpeed = 4f;
 
     
     void Awake()
@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
         _controls = new PlayerControls();
         
         // Subscribe to Left Joystick and WASD movement events
-        _controls.Gameplay.Movement.performed += ctx => _movement_direction = ctx.ReadValue<Vector2>();
-        _controls.Gameplay.Movement.canceled += ctx => _movement_direction = Vector2.zero;
+        _controls.Gameplay.Movement.performed += ctx => _movementDirection = ctx.ReadValue<Vector2>();
+        _controls.Gameplay.Movement.canceled += ctx => _movementDirection = Vector2.zero;
     }
 
     void OnEnable()
@@ -45,6 +45,6 @@ public class PlayerController : MonoBehaviour
     // Every step!
     void FixedUpdate()
     {
-        _rigidbody.velocity = _movement_direction * player_speed;
+        _rigidbody.velocity = _movementDirection * playerSpeed;
     }
 }
