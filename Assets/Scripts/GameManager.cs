@@ -43,21 +43,30 @@ public class GameManager : MonoBehaviour
         ManageGlobalLight();
     }
 
+    #region Events
     public event System.Action onDaytime;
     public void Daytime()
     {
         onDaytime?.Invoke();
-            _globalLight.intensity = _daylightIntensity;
-            _globalLight.color = _dayColor;
+        _globalLight.intensity = _daylightIntensity;
+        _globalLight.color = _dayColor;
     }
 
     public event System.Action onNighttime;
     public void Nighttime()
     {
         onNighttime?.Invoke();
-            _globalLight.intensity = _nightlightIntensity;
-            _globalLight.color = _nightColor;
+        _globalLight.intensity = _nightlightIntensity;
+        _globalLight.color = _nightColor;
     }
+
+    public event System.Action onAddProsperity;
+    public void AddProsperity(int amount)
+    {
+        onAddProsperity?.Invoke();
+        prosperity += amount;
+    }
+    #endregion
 
     void ManageGlobalLight()
     {
