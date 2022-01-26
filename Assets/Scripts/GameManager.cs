@@ -5,6 +5,10 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Singleton Insurance")]
+    private static GameManager _instance;
+    public static GameManager GetInstance { get { return _instance; } }
+
     [Header("Time Variables")]
     [Tooltip("Length of a day in seconds")]
     [SerializeField] int _dayLength = 1800;
@@ -20,6 +24,18 @@ public class GameManager : MonoBehaviour
     [Header("Score Variables")]
     public int prosperity;
 
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
     void FixedUpdate()
     {
         _clockTime += Time.deltaTime;
@@ -27,17 +43,31 @@ public class GameManager : MonoBehaviour
         ManageGlobalLight();
     }
 
+    public event System.Action onDaytime;
+    public void Daytime()
+    {
+        onDaytime?.Invoke();
+            _globalLight.intensity = _daylightIntensity;
+            _globalLight.color = _dayColor;
+    }
+
+    public event System.Action onNighttime;
+    public void Nighttime()
+    {
+        onNighttime?.Invoke();
+            _globalLight.intensity = _nightlightIntensity;
+            _globalLight.color = _nightColor;
+    }
+
     void ManageGlobalLight()
     {
         if (_clockTime <= _dayLength * 0.5)
         {
-            _globalLight.intensity = _daylightIntensity;
-            _globalLight.color = _dayColor;
+            Daytime();
         }
         else if (_clockTime <= _dayLength)
         {
-            _globalLight.intensity = _nightlightIntensity;
-            _globalLight.color = _nightColor;
+            Nighttime();
         }
     }
 

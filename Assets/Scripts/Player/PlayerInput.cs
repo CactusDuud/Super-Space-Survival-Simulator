@@ -3,31 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(Movement))]
+public class PlayerInput : MonoBehaviour
 {
-    [Header("Super Important Top-of-The-List Variables")]
-    [SerializeField] Rigidbody2D _rigidbody;
+    [Header("References")]
     PlayerControls _controls;
+    Movement _movement;
 
-    // Closed-access information variables about the player
-    [Header("Player Statistics")]
-    Vector2 _movementDirection;
-
-    // Public player stats and abilities
-    [Header("Player Attributes")]
-    public float playerSpeed = 4f;
-
-    
+    [Header("Statistics")]
+    [SerializeField] Vector2 _movementDirection;
+   
     void Awake()
-    {
-        _rigidbody = GetComponentInParent<Rigidbody2D>();
-        
+    {   
         // Creates a new instance of player _controls
         _controls = new PlayerControls();
         
         // Subscribe to Left Joystick and WASD movement events
         _controls.Gameplay.Movement.performed += ctx => _movementDirection = ctx.ReadValue<Vector2>();
         _controls.Gameplay.Movement.canceled += ctx => _movementDirection = Vector2.zero;
+
+        _movement = GetComponent<Movement>();
     }
 
     void OnEnable()
@@ -42,9 +37,17 @@ public class PlayerController : MonoBehaviour
         _controls.Disable();
     }
 
-    // Every step!
     void FixedUpdate()
     {
-        _rigidbody.velocity = _movementDirection * playerSpeed;
+        _movement.Move(_movementDirection);
     }
+
+    // Not sure if this is necessary
+    // void OnDestroy()
+    // {
+    //     // Unsubscribe to Left Joystick and WASD movement events
+    //     _controls.Gameplay.Movement.performed -= ctx => _movementDirection = ctx.ReadValue<Vector2>();
+    //     _controls.Gameplay.Movement.canceled -= ctx => _movementDirection = Vector2.zero;
+    // }
+    
 }

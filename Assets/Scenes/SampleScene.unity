@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 570882475}
   - component: {fileID: 570882474}
   - component: {fileID: 570882477}
+  - component: {fileID: 570882478}
   - component: {fileID: 570882473}
   m_Layer: 0
   m_Name: Player
@@ -290,11 +291,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 570882472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f76fa28b7a71b04f83f104efb9fd6df, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9bdd8e26e6eb64a9c8f3ad0744e8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 570882475}
-  playerSpeed: 4
+  speed: 4
 --- !u!61 &570882474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -408,6 +408,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &570882478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570882472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acc49abd64bb9046b38d02be16fafcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementDirection: {x: 0, y: 0}
 --- !u!1 &989848961
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +432,7 @@ GameObject:
   - component: {fileID: 989848963}
   - component: {fileID: 989848962}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Base Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,6 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131544338}
   - component: {fileID: 2131544339}
+  - component: {fileID: 2131544340}
   m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
@@ -661,7 +675,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -686,3 +700,15 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &2131544340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131544337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b2bc32e0db1e747abc5a51fee5b3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
