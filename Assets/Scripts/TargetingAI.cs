@@ -5,26 +5,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Movement))]
-public class NPCTargetingAI : MonoBehaviour
+public class TargetingAI : MonoBehaviour
 {
     // This class should determine a location for the object to move
     // and feed a vector to that point that into a movement script
 
     [Header("References")]
     Movement _movement;
-    [SerializeField] Transform _movePoint;
+    [SerializeField] protected Transform _movePoint;
 
-    void Awake()
+    protected virtual void Awake()
     {
         _movement = GetComponent<Movement>();
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         // TODO: Replace with ai eventually
-        Vector2 targetDirection = _movePoint.position - transform.position;
-        targetDirection = targetDirection.normalized;
-
+        Vector2 targetDirection = DetermineDirection();
         _movement.Move(targetDirection);
+    }
+
+    protected virtual Vector2 DetermineDirection()
+    {
+        return (_movePoint.position - transform.position).normalized;
     }
 }
