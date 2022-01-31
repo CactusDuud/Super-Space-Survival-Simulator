@@ -35,6 +35,51 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PlantCrop1"",
+                    ""type"": ""Button"",
+                    ""id"": ""2067b151-1542-4568-baa4-62e77a925e8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlantCrop2"",
+                    ""type"": ""Button"",
+                    ""id"": ""982372ef-201f-4e73-9dbe-c44bb69fbfbb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlantCrop3"",
+                    ""type"": ""Button"",
+                    ""id"": ""39506356-b63c-4d40-ae76-90ac9b6f7abb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlantCrop4"",
+                    ""type"": ""Button"",
+                    ""id"": ""414988c7-b9d6-44dc-95b0-c8905b0a10a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlantCrop6"",
+                    ""type"": ""Button"",
+                    ""id"": ""27f8022f-d7da-485f-9d35-ae0ea75c8adb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +148,61 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0aecab2c-c099-4f59-8cdc-3fcaeb4e88bf"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlantCrop1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30b4ce1b-0525-4c8d-b86c-427110120a3f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlantCrop2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9fdce21-4101-43d6-9019-4c8a30b32f67"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlantCrop3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14c90380-bb58-47be-b52c-5327acad735e"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlantCrop4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d52fee7c-53e1-43ae-8350-f3cdbd99f7b3"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlantCrop6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,6 +212,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
+        m_Gameplay_PlantCrop1 = m_Gameplay.FindAction("PlantCrop1", throwIfNotFound: true);
+        m_Gameplay_PlantCrop2 = m_Gameplay.FindAction("PlantCrop2", throwIfNotFound: true);
+        m_Gameplay_PlantCrop3 = m_Gameplay.FindAction("PlantCrop3", throwIfNotFound: true);
+        m_Gameplay_PlantCrop4 = m_Gameplay.FindAction("PlantCrop4", throwIfNotFound: true);
+        m_Gameplay_PlantCrop6 = m_Gameplay.FindAction("PlantCrop6", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -172,11 +277,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Movement;
+    private readonly InputAction m_Gameplay_PlantCrop1;
+    private readonly InputAction m_Gameplay_PlantCrop2;
+    private readonly InputAction m_Gameplay_PlantCrop3;
+    private readonly InputAction m_Gameplay_PlantCrop4;
+    private readonly InputAction m_Gameplay_PlantCrop6;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
+        public InputAction @PlantCrop1 => m_Wrapper.m_Gameplay_PlantCrop1;
+        public InputAction @PlantCrop2 => m_Wrapper.m_Gameplay_PlantCrop2;
+        public InputAction @PlantCrop3 => m_Wrapper.m_Gameplay_PlantCrop3;
+        public InputAction @PlantCrop4 => m_Wrapper.m_Gameplay_PlantCrop4;
+        public InputAction @PlantCrop6 => m_Wrapper.m_Gameplay_PlantCrop6;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +304,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @PlantCrop1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop1;
+                @PlantCrop1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop1;
+                @PlantCrop1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop1;
+                @PlantCrop2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop2;
+                @PlantCrop2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop2;
+                @PlantCrop2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop2;
+                @PlantCrop3.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop3;
+                @PlantCrop3.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop3;
+                @PlantCrop3.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop3;
+                @PlantCrop4.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop4;
+                @PlantCrop4.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop4;
+                @PlantCrop4.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop4;
+                @PlantCrop6.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop6;
+                @PlantCrop6.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop6;
+                @PlantCrop6.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop6;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -196,6 +326,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @PlantCrop1.started += instance.OnPlantCrop1;
+                @PlantCrop1.performed += instance.OnPlantCrop1;
+                @PlantCrop1.canceled += instance.OnPlantCrop1;
+                @PlantCrop2.started += instance.OnPlantCrop2;
+                @PlantCrop2.performed += instance.OnPlantCrop2;
+                @PlantCrop2.canceled += instance.OnPlantCrop2;
+                @PlantCrop3.started += instance.OnPlantCrop3;
+                @PlantCrop3.performed += instance.OnPlantCrop3;
+                @PlantCrop3.canceled += instance.OnPlantCrop3;
+                @PlantCrop4.started += instance.OnPlantCrop4;
+                @PlantCrop4.performed += instance.OnPlantCrop4;
+                @PlantCrop4.canceled += instance.OnPlantCrop4;
+                @PlantCrop6.started += instance.OnPlantCrop6;
+                @PlantCrop6.performed += instance.OnPlantCrop6;
+                @PlantCrop6.canceled += instance.OnPlantCrop6;
             }
         }
     }
@@ -203,5 +348,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnPlantCrop1(InputAction.CallbackContext context);
+        void OnPlantCrop2(InputAction.CallbackContext context);
+        void OnPlantCrop3(InputAction.CallbackContext context);
+        void OnPlantCrop4(InputAction.CallbackContext context);
+        void OnPlantCrop6(InputAction.CallbackContext context);
     }
 }
