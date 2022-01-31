@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     Rigidbody2D _rigidbody;
 
     [Header("Attributes")]
-    [SerializeField] protected float speed = 4f;
+    [SerializeField] public float speed = 4f;
 
     void Awake()
     {

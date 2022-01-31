@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlantCrop6",
+                    "name": "PlantCrop5",
                     "type": "Button",
                     "id": "27f8022f-d7da-485f-9d35-ae0ea75c8adb",
                     "expectedControlType": "Button",
@@ -178,7 +178,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlantCrop6",
+                    "action": "PlantCrop5",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
