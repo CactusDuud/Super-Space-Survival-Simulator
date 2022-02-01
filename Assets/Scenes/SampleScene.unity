@@ -2454,12 +2454,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  _dayLength: 3
+  _dayLength: 60
   _clockTime: 0
   _globalLight: {fileID: 996681210}
   _daylightIntensity: 1.5
   _nightlightIntensity: 0.5
-  _dayColor: {r: 1, g: 1, b: 1, a: 0}
+  _dayColor: {r: 1, g: 0.98389053, b: 0.8443396, a: 0}
   _nightColor: {r: 0.5617354, g: 0.5518868, b: 1, a: 0}
   prosperity: 0
 --- !u!4 &2091923390

@@ -10,14 +10,14 @@ public class GridManager : MonoBehaviour
     private static GridManager _instance;
     public static GridManager GetInstance { get { return _instance; } }
 
-    [Header("Grid References")]
+    [Header("References")]
     [SerializeField] Tile _tilePrefab;
 
-    [Header("Grid Attributes")]
+    [Header("Attributes")]
     [SerializeField] int _width;
     [SerializeField] int _height;
 
-    [Header("Grid Statistics")]
+    [Header("Statistics")]
     Dictionary<Vector2, Tile> _tileMap;
 
     void Awake()
@@ -41,6 +41,7 @@ public class GridManager : MonoBehaviour
             for (int y = -(_height - 1 / 2); y < _height; y++)
             {
                 var newTile = Instantiate(_tilePrefab, new Vector3(x, y, 1), Quaternion.identity);
+                newTile.transform.parent = transform;
                 newTile.name = $"Tile ({x}, {y})";
 
                 _tileMap[new Vector2(x, y)] = newTile;
