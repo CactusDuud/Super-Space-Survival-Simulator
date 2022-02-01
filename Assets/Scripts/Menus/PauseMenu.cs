@@ -1,3 +1,9 @@
+//contributors: Esmeralda Juarez, Miguel Aleman
+/*This script is used in the pause menu in order too allow the player too 
+ * pause their game
+ * resume
+ * return too main menu*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -5,12 +11,6 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    //contributors: Esme, Miguel
-    /*This script is used in the pause menu in order too allow the player too 
-     * pause their game
-     * resume
-     * return too main menu*/
-
     //this function resumes the game from its paused state
     public void Resume()
     {
