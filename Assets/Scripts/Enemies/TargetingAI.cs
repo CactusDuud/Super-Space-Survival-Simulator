@@ -11,7 +11,7 @@ public class TargetingAI : MonoBehaviour
     // and feed a vector to that point that into a movement script
 
     [Header("References")]
-    Movement _movement;
+    protected Movement _movement;
     [SerializeField] protected Transform _movePoint;
 
     protected virtual void Awake()

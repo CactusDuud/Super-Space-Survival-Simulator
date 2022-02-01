@@ -1,3 +1,6 @@
+// the code was written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +24,12 @@ public class PlayerInput : MonoBehaviour
         // Subscribe to Left Joystick and WASD movement events
         _controls.Gameplay.Movement.performed += ctx => _movementDirection = ctx.ReadValue<Vector2>();
         _controls.Gameplay.Movement.canceled += ctx => _movementDirection = Vector2.zero;
+
+        //_controls.Gameplay.PlantCrop1.performed += ctx => //plant crop 1 function ;
+        //_controls.Gameplay.PlantCrop2.performed += ctx => //plant crop 2 function ;
+        //_controls.Gameplay.PlantCrop3.performed += ctx => //plant crop 3 function ;
+        //_controls.Gameplay.PlantCrop4.performed += ctx => //plant crop 4 function ;
+        //_controls.Gameplay.PlantCrop5.performed += ctx => //plant crop 5 function ;
 
         _movement = GetComponent<Movement>();
     }

@@ -1,3 +1,5 @@
+// Written by Sage Mahmud
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +12,7 @@ public class SneakyAI : TargetingAI
 
     [Header("Statistics")]
     float _hideTimer;
-    bool isHiding = false;
+    bool _isHiding;
 
     protected override void Awake()
     {
@@ -21,14 +23,14 @@ public class SneakyAI : TargetingAI
 
     protected override void FixedUpdate()
     {
-        HideClock();
+        HideBehaviourClock();
 
         base.FixedUpdate();
     }
 
     protected override Vector2 DetermineDirection()
     {
-        if (isHiding)
+        if (_isHiding)
         {
             return Vector2.zero;
         }
@@ -38,22 +40,21 @@ public class SneakyAI : TargetingAI
         }
     }
 
-    void HideClock()
+    void HideBehaviourClock()
     {
         _hideTimer -= Time.deltaTime;
         if (_hideTimer <= 0)
         {
-            if (isHiding)
+            if (_isHiding)
             {
                 _hideTimer = _walkDuration;
-                isHiding = false;
+                _isHiding = false;
             }
             else
             {
                 _hideTimer = _hideDuration;
-                isHiding = true;
+                _isHiding = true;
             }
         }
-        
     }
 }
