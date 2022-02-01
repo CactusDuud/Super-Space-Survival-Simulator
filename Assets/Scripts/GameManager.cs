@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager GetInstance { get { return _instance; } }
 
+    [Header("State Variables")]
+    [SerializeField] private GameState state;
+
     [Header("Time Variables")]
     [Tooltip("Length of a day in seconds")]
     [SerializeField] int _dayLength = 1800;
@@ -24,6 +27,67 @@ public class GameManager : MonoBehaviour
     [Header("Score Variables")]
     public int prosperity;
 
+    public enum GameState
+    {
+        Init,
+        Day,
+        Night,
+        Lose
+    }
+
+    public void SetGameState(GameState newState)
+    {
+        state = newState;
+
+        switch (newState)
+        {
+            case GameState.Init:
+                GridManager.GetInstance.CreateGrid();
+
+
+                break;
+            case GameState.Day:
+                Daytime();
+                break;
+            case GameState.Night:
+                Nighttime();
+                break;
+            case GameState.Lose:
+                break;
+            default:
+                break;
+        }
+
+        OnGameStateChanged?.Invoke();
+    }
+
+    #region Events
+    public event System.Action OnGameStateChanged;
+
+    public event System.Action OnDaytime;
+    public void Daytime()
+    {
+        OnDaytime?.Invoke();
+        _globalLight.intensity = _daylightIntensity;
+        _globalLight.color = _dayColor;
+    }
+
+    public event System.Action OnNighttime;
+    public void Nighttime()
+    {
+        OnNighttime?.Invoke();
+        _globalLight.intensity = _nightlightIntensity;
+        _globalLight.color = _nightColor;
+    }
+
+    public event System.Action OnAddProsperity;
+    public void AddProsperity(int amount)
+    {
+        OnAddProsperity?.Invoke();
+        prosperity += amount;
+    }
+    #endregion
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -36,48 +100,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        SetGameState(GameState.Init);
+        SetGameState(GameState.Day);
+    }
+
     void FixedUpdate()
     {
         _clockTime += Time.deltaTime;
-        if (_clockTime >= _dayLength) {_clockTime = 0;}
-        ManageGlobalLight();
-    }
+        if (_clockTime >= _dayLength) _clockTime = 0;
 
-    #region Events
-    public event System.Action onDaytime;
-    public void Daytime()
-    {
-        onDaytime?.Invoke();
-        _globalLight.intensity = _daylightIntensity;
-        _globalLight.color = _dayColor;
-    }
-
-    public event System.Action onNighttime;
-    public void Nighttime()
-    {
-        onNighttime?.Invoke();
-        _globalLight.intensity = _nightlightIntensity;
-        _globalLight.color = _nightColor;
-    }
-
-    public event System.Action onAddProsperity;
-    public void AddProsperity(int amount)
-    {
-        onAddProsperity?.Invoke();
-        prosperity += amount;
-    }
-    #endregion
-
-    void ManageGlobalLight()
-    {
-        if (_clockTime <= _dayLength * 0.5)
-        {
-            Daytime();
-        }
-        else if (_clockTime <= _dayLength)
-        {
-            Nighttime();
-        }
+        if (_clockTime <= _dayLength * 0.5) SetGameState(GameState.Day);
+        else if (_clockTime <= _dayLength) SetGameState(GameState.Night);
     }
 
     public float GetTimePercent()

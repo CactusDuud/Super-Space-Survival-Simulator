@@ -18,8 +18,8 @@ public class LightAtNight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.GetInstance.onDaytime += TurnOff;
-        GameManager.GetInstance.onNighttime += TurnOn;
+        GameManager.GetInstance.OnDaytime += TurnOff;
+        GameManager.GetInstance.OnNighttime += TurnOn;
     }
 
     void TurnOn()
