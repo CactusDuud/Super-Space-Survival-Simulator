@@ -15,7 +15,10 @@ public class LightAtNight : MonoBehaviour
     {
         _light = GetComponent<Light2D>();
         _defaultIntensity = _light.intensity;
+    }
 
+    void Start()
+    {
         GameManager.GetInstance.OnDaytime += TurnOff;
         GameManager.GetInstance.OnNighttime += TurnOn;
     }

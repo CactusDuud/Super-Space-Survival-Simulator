@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     public enum GameState
     {
-        Init,
         Day,
         Night,
         Lose
@@ -55,9 +54,6 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
-            case GameState.Init:
-                GridManager.GetInstance.CreateGrid();
-                break;
             case GameState.Day:
                 stateText.text = "Day";
                 Daytime();
@@ -117,12 +113,12 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        
+        SetGameState(GameState.Day);
     }
 
     void Start()
     {
-        SetGameState(GameState.Init);
-        SetGameState(GameState.Day);
     }
 
     void FixedUpdate()
