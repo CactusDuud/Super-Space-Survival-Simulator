@@ -4,6 +4,8 @@
  * resume
  * return too main menu*/
 
+ //side note: this script was also used in the Game Over Menu since it had the code needed (just didnt change the name of the script)
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
