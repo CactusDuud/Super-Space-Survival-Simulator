@@ -1,3 +1,5 @@
+// Written by Sage Mahmud
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +40,8 @@ public class PlayerTool : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<Health>()?.Damage(_damage);
+        if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
+        else if (other.CompareTag("CropTag")) other.GetComponent<GrowAndHarvest>()?.Harvest();
     }
 
     public void UseTool()

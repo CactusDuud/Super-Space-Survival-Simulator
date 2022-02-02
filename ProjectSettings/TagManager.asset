@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerTag
+  - EnemyTag
+  - CropTag
   layers:
   - Default
   - TransparentFX

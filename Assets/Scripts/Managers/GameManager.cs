@@ -97,13 +97,6 @@ public class GameManager : MonoBehaviour
         _globalLight.color = _nightColor;
         _doEnemySpawning = true;
     }
-
-    public event System.Action OnAddProsperity;
-    public void AddProsperity(int amount)
-    {
-        OnAddProsperity?.Invoke();
-        prosperity += amount;
-    }
     #endregion
 
     void Awake()
@@ -118,10 +111,6 @@ public class GameManager : MonoBehaviour
         }
         
         SetGameState(GameState.Day);
-    }
-
-    void Start()
-    {
     }
 
     void FixedUpdate()
@@ -156,5 +145,15 @@ public class GameManager : MonoBehaviour
     public float GetTimeRaw()
     {
         return _clockTime;
+    }
+
+    public void AddProsperity(int amount)
+    {
+        prosperity += amount;
+    }
+
+    public void SubtractProsperity(int amount)
+    {
+        prosperity -= amount;
     }
 }

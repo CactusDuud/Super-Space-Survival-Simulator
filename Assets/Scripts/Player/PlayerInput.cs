@@ -1,4 +1,4 @@
-// the code was written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman
+// written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman
 
 
 using System.Collections;
