@@ -37,6 +37,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""UseTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5344e3b-8b29-40c0-8324-7a6e141f02ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""PlantCrop1"",
                     ""type"": ""Button"",
                     ""id"": ""2067b151-1542-4568-baa4-62e77a925e8e"",
@@ -203,6 +212,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""PlantCrop5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e093a0c6-3520-47bc-9654-c2da7b0c86ce"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -212,6 +232,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
+        m_Gameplay_UseTool = m_Gameplay.FindAction("UseTool", throwIfNotFound: true);
         m_Gameplay_PlantCrop1 = m_Gameplay.FindAction("PlantCrop1", throwIfNotFound: true);
         m_Gameplay_PlantCrop2 = m_Gameplay.FindAction("PlantCrop2", throwIfNotFound: true);
         m_Gameplay_PlantCrop3 = m_Gameplay.FindAction("PlantCrop3", throwIfNotFound: true);
@@ -277,6 +298,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Movement;
+    private readonly InputAction m_Gameplay_UseTool;
     private readonly InputAction m_Gameplay_PlantCrop1;
     private readonly InputAction m_Gameplay_PlantCrop2;
     private readonly InputAction m_Gameplay_PlantCrop3;
@@ -287,6 +309,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
+        public InputAction @UseTool => m_Wrapper.m_Gameplay_UseTool;
         public InputAction @PlantCrop1 => m_Wrapper.m_Gameplay_PlantCrop1;
         public InputAction @PlantCrop2 => m_Wrapper.m_Gameplay_PlantCrop2;
         public InputAction @PlantCrop3 => m_Wrapper.m_Gameplay_PlantCrop3;
@@ -304,6 +327,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @UseTool.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseTool;
+                @UseTool.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseTool;
+                @UseTool.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseTool;
                 @PlantCrop1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop1;
                 @PlantCrop1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop1;
                 @PlantCrop1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlantCrop1;
@@ -326,6 +352,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @UseTool.started += instance.OnUseTool;
+                @UseTool.performed += instance.OnUseTool;
+                @UseTool.canceled += instance.OnUseTool;
                 @PlantCrop1.started += instance.OnPlantCrop1;
                 @PlantCrop1.performed += instance.OnPlantCrop1;
                 @PlantCrop1.canceled += instance.OnPlantCrop1;
@@ -348,6 +377,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnUseTool(InputAction.CallbackContext context);
         void OnPlantCrop1(InputAction.CallbackContext context);
         void OnPlantCrop2(InputAction.CallbackContext context);
         void OnPlantCrop3(InputAction.CallbackContext context);

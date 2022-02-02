@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
     bool _doEnemySpawning;
     float _spawnTimer;
     float[] _cameraRanges = new float[2] {-1.1f, 1.1f};
-    int _enemyCount;
     [SerializeField] int _enemySpawnCap = 8;
+    [SerializeField]int _enemyCount;
 
     [Header("Score Variables")]
     public int prosperity;

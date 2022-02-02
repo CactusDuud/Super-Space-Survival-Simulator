@@ -7,12 +7,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(CropSpawner))]
 public class PlayerInput : MonoBehaviour
 {
     [Header("References")]
     PlayerControls _controls;
     Movement _movement;
     CropSpawner _cropSpawner;
+    [SerializeField] PlayerTool _currentTool;
 
     [Header("Statistics")]
     [SerializeField] Vector2 _movementDirection;
@@ -23,12 +25,15 @@ public class PlayerInput : MonoBehaviour
         // Creates a new instance of player _controls
         _controls = new PlayerControls();
 
-        //Creates a new instance of crop spawner class
-        _cropSpawner = gameObject.GetComponent<CropSpawner>();
+        // Fetch components
+        _cropSpawner = GetComponent<CropSpawner>();
         
         // Subscribe to Left Joystick and WASD movement events
         _controls.Gameplay.Movement.performed += ctx => _movementDirection = ctx.ReadValue<Vector2>();
         _controls.Gameplay.Movement.canceled += ctx => _movementDirection = Vector2.zero;
+
+        // Subscribe to keyboard q press event to use the current tool
+        _controls.Gameplay.UseTool.performed += _ => _currentTool.UseTool();
 
         //Each one Subscribes to a PlantCrop
         _controls.Gameplay.PlantCrop1.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 1 function

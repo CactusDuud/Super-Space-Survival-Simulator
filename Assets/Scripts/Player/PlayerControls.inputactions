@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "UseTool",
+                    "type": "Button",
+                    "id": "f5344e3b-8b29-40c0-8324-7a6e141f02ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PlantCrop1",
                     "type": "Button",
                     "id": "2067b151-1542-4568-baa4-62e77a925e8e",
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlantCrop5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e093a0c6-3520-47bc-9654-c2da7b0c86ce",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

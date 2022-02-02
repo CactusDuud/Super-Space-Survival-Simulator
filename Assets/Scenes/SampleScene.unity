@@ -4487,7 +4487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &772776500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6202,37 +6202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546668513}
   m_CullTransparentMesh: 1
---- !u!1 &1597479503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4772005440113176238, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
-  m_PrefabInstance: {fileID: 4772005439609739014}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1597479504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597479503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3a892d8b9d8f248a3075179ffdd3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plant1: {fileID: 3228281152749621193, guid: ede99394d3d1d604bb087c62a8b2dc4a, type: 3}
-  cropParent: {fileID: 0}
---- !u!114 &1597479510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597479503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757d5eb6b8a3c3246a213b98a42be52d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1634474605
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,15 +6490,16 @@ MonoBehaviour:
   - {fileID: 1143433150}
   - {fileID: 1458190843}
   state: 0
-  _dayLength: 60
+  _dayLength: 20
   _clockTime: 0
   _globalLight: {fileID: 996681210}
   _dayColor: {r: 1, g: 0.98389053, b: 0.8443396, a: 0}
   _daylightIntensity: 1.5
   _nightColor: {r: 0.5617354, g: 0.5518868, b: 1, a: 0}
   _nightlightIntensity: 0.5
-  _spawnInterval: 5
-  _enemySpawnCap: 8
+  _spawnInterval: 10
+  _enemySpawnCap: 5
+  _enemyCount: 0
   prosperity: 0
   GameOverMenu: {fileID: 1040921964}
   stateText: {fileID: 1034805277}
@@ -6690,14 +6660,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4772005440113176232, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
-      propertyPath: plant1
-      value: 
-      objectReference: {fileID: 3228281152749621193, guid: ede99394d3d1d604bb087c62a8b2dc4a, type: 3}
-    - target: {fileID: 4772005440113176232, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
-      propertyPath: cropParent
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4772005440113176234, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6745,14 +6707,6 @@ PrefabInstance:
     - target: {fileID: 4772005440113176238, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4772005440113176238, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
-      propertyPath: m_TagString
-      value: PlayerTag
-      objectReference: {fileID: 0}
-    - target: {fileID: 4772005441538842135, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}

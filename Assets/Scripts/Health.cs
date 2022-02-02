@@ -10,15 +10,31 @@ public class Health : MonoBehaviour
     // maybe when it runs out, destroy it
 
     [Header("Attributes")]
-    [SerializeField] int _health;
+    [SerializeField] int _maxHealth;
+    int _health;
 
-    // void OnDestroy()
-    // {
-        
-    // }
-    
-    void AddHealth(int amount)
+    void Awake()
     {
-        _health += amount;
+        _health = _maxHealth;
+    }
+
+    void Update()
+    {
+        if (_health <= 0)
+        {
+            Debug.Log($"{this.name} has died");
+            Destroy(gameObject);
+        }
+    }
+    
+    public void Heal(int amount)
+    {
+        if (_health + amount <= _maxHealth) _health += amount;
+        else _health = _maxHealth;
+    }
+
+    public void Damage(int amount)
+    {
+        _health -= amount;
     }
 }
