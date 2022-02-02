@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager GetInstance { get { return _instance; } }
     [SerializeField] GameObject[] _enemies;
+    [SerializeField] GameObject[] _spawnPoints;
 
     [Header("State Variables")]
     [SerializeField] private GameState state;
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     bool _doEnemySpawning;
     float _spawnTimer;
     float[] _cameraRanges = new float[2] {-1.1f, 1.1f};
+    int _enemyCount;
+    [SerializeField] int _enemySpawnCap = 8;
 
     [Header("Score Variables")]
     public int prosperity;
@@ -129,7 +132,7 @@ public class GameManager : MonoBehaviour
 
         // Spawn clock
         _spawnTimer += Time.deltaTime;
-        if (_spawnTimer >= _spawnInterval) SpawnEnemies();
+        if (_spawnTimer >= _spawnInterval && _enemyCount < _enemySpawnCap && _doEnemySpawning) SpawnEnemies();
 
         if (_clockTime <= _dayLength * 0.5) SetGameState(GameState.Day);
         else if (_clockTime <= _dayLength) SetGameState(GameState.Night);
@@ -138,13 +141,11 @@ public class GameManager : MonoBehaviour
     void SpawnEnemies()
     {
         _spawnTimer = 0.0f;
-        Vector3 _cameraVector = new Vector3(
-            _cameraRanges[Random.Range(0, _cameraRanges.Length - 1)],
-            0.5f,
-            10.0f
-            );
-        Vector3 _spawnPoint = Camera.main.ViewportToWorldPoint(_cameraVector);
-        Instantiate(_enemies[Random.Range(0, _enemies.Length - 1)], _spawnPoint, Quaternion.identity);
+        _enemyCount++;
+        GameObject _enemy = _enemies[Random.Range(0, _enemies.Length - 1)];
+        Vector3 _spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length - 1)].transform.position;
+        GameObject _newEnemy = Instantiate(_enemy, _spawnPoint, Quaternion.identity);
+        _newEnemy.transform.position = new Vector3(_newEnemy.transform.position.x, _newEnemy.transform.position.y, 0);
     }
 
     public float GetTimePercent()

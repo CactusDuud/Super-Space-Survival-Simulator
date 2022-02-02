@@ -17,10 +17,7 @@ public class TargetingAI : MonoBehaviour
     protected virtual void Awake()
     {
         _movement = GetComponent<Movement>();
-        // if (_movePoint == null)
-        // {
-        //     _movePoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        // }
+        FindMovePoint();
     }
 
     protected virtual void FixedUpdate()
@@ -28,6 +25,15 @@ public class TargetingAI : MonoBehaviour
         // TODO: Replace with ai eventually
         Vector2 targetDirection = DetermineDirection();
         _movement.Move(targetDirection);
+    }
+
+    protected void FindMovePoint()
+    {
+        _movePoint = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
+
+        // TODO: Should probably have a trigger to override this when close to a crop. It's not good at pathfinding :(
+        // GameObject[] _cropTargets = GameObject.FindGameObjectsWithTag("CropTag");
+        // _movePoint = _cropTargets[Random.Range(0, _cropTargets.Length - 1)].GetComponent<Transform>();
     }
 
     protected virtual Vector2 DetermineDirection()
