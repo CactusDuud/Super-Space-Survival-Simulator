@@ -15,11 +15,7 @@ public class LightAtNight : MonoBehaviour
     {
         _light = GetComponent<Light2D>();
         _defaultIntensity = _light.intensity;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         GameManager.GetInstance.OnDaytime += TurnOff;
         GameManager.GetInstance.OnNighttime += TurnOn;
     }
