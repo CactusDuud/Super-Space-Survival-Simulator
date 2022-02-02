@@ -1,3 +1,5 @@
+// Written by Sage Mahmud
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,10 +21,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Light Variables")]
     [SerializeField] Light2D _globalLight;
-    [SerializeField] float _daylightIntensity = 1.5f;
-    [SerializeField] float _nightlightIntensity = 0.5f;
     [SerializeField] Color _dayColor;
+    [SerializeField] float _daylightIntensity = 1.5f;
     [SerializeField] Color _nightColor;
+    [SerializeField] float _nightlightIntensity = 0.5f;
 
     [Header("Score Variables")]
     public int prosperity;
