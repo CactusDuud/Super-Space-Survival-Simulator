@@ -3110,6 +3110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa326a4c0004384084e6a323820891e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemies: []
   state: 0
   _dayLength: 60
   _clockTime: 0
@@ -3118,7 +3119,10 @@ MonoBehaviour:
   _daylightIntensity: 1.5
   _nightColor: {r: 0.5617354, g: 0.5518868, b: 1, a: 0}
   _nightlightIntensity: 0.5
+  _spawnInterval: 20
   prosperity: 0
+  GameOverMenu: {fileID: 1040921964}
+  stateText: {fileID: 1034805277}
 --- !u!4 &2091923390
 Transform:
   m_ObjectHideFlags: 0

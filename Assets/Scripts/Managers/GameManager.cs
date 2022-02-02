@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class GameManager : MonoBehaviour
     [Header("Score Variables")]
     public int prosperity;
 
+    [Header("Game UI")]
+    public GameObject GameOverMenu;
+    public TextMeshProUGUI stateText;
+
     public enum GameState
     {
         Init,
@@ -54,12 +59,17 @@ public class GameManager : MonoBehaviour
                 GridManager.GetInstance.CreateGrid();
                 break;
             case GameState.Day:
+                stateText.text = "Day";
                 Daytime();
                 break;
             case GameState.Night:
+                stateText.text = "Night";
                 Nighttime();
                 break;
             case GameState.Lose:
+                stateText.text = "This IS THE END";
+                GameOverMenu.SetActive(true);
+                Time.timeScale = 0f;
                 break;
             default:
                 break;
