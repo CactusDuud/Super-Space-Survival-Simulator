@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Singleton Insurance")]
     private static GameManager _instance;
     public static GameManager GetInstance { get { return _instance; } }
+    [SerializeField] GameObject[] _enemies;
 
     [Header("State Variables")]
     [SerializeField] private GameState state;
@@ -25,6 +26,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _daylightIntensity = 1.5f;
     [SerializeField] Color _nightColor;
     [SerializeField] float _nightlightIntensity = 0.5f;
+
+    [Header("Enemy Variables")]
+    [SerializeField] float _spawnInterval = 20.0f;
+    bool _doEnemySpawning;
+    float _spawnTimer;
+    float[] _cameraRanges = new float[2] {-1.1f, 1.1f};
 
     [Header("Score Variables")]
     public int prosperity;
@@ -45,8 +52,6 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Init:
                 GridManager.GetInstance.CreateGrid();
-
-
                 break;
             case GameState.Day:
                 Daytime();
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
         OnDaytime?.Invoke();
         _globalLight.intensity = _daylightIntensity;
         _globalLight.color = _dayColor;
+        _doEnemySpawning = false;
     }
 
     public event System.Action OnNighttime;
@@ -80,6 +86,7 @@ public class GameManager : MonoBehaviour
         OnNighttime?.Invoke();
         _globalLight.intensity = _nightlightIntensity;
         _globalLight.color = _nightColor;
+        _doEnemySpawning = true;
     }
 
     public event System.Action OnAddProsperity;
@@ -110,11 +117,28 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Day/night clock
         _clockTime += Time.deltaTime;
-        if (_clockTime >= _dayLength) _clockTime = 0;
+        if (_doEnemySpawning && _clockTime >= _dayLength) _clockTime = 0.0f;
+
+        // Spawn clock
+        _spawnTimer += Time.deltaTime;
+        if (_spawnTimer >= _spawnInterval) SpawnEnemies();
 
         if (_clockTime <= _dayLength * 0.5) SetGameState(GameState.Day);
         else if (_clockTime <= _dayLength) SetGameState(GameState.Night);
+    }
+
+    void SpawnEnemies()
+    {
+        _spawnTimer = 0.0f;
+        Vector3 _cameraVector = new Vector3(
+            _cameraRanges[Random.Range(0, _cameraRanges.Length - 1)],
+            0.5f,
+            10.0f
+            );
+        Vector3 _spawnPoint = Camera.main.ViewportToWorldPoint(_cameraVector);
+        Instantiate(_enemies[Random.Range(0, _enemies.Length - 1)], _spawnPoint, Quaternion.identity);
     }
 
     public float GetTimePercent()

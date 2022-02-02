@@ -17,6 +17,10 @@ public class TargetingAI : MonoBehaviour
     protected virtual void Awake()
     {
         _movement = GetComponent<Movement>();
+        // if (_movePoint == null)
+        // {
+        //     _movePoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        // }
     }
 
     protected virtual void FixedUpdate()
