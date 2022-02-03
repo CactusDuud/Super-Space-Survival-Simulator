@@ -13,11 +13,15 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    //contributors: Esmeralda Juarez, Miguel Aleman
+    //contributors: Esmeralda Juarez, Miguel Aleman, Sage Mahmud
     /*This script is used in the pause menu in order too allow the player too 
      * pause their game
      * resume
-     * return too main menu*/
+     * return to main menu*/
+
+    [Header("Singleton Insurance")]
+    private static PauseMenu _instance;
+    public static PauseMenu GetInstance { get { return _instance; } }
 
     // checks to see if game is paused which it is not when starting so is set to false.
     public static bool GamePaused = false;
@@ -25,21 +29,24 @@ public class PauseMenu : MonoBehaviour
     // allows us to out the pausemenu in this object to show to players
     public GameObject PauseUI;
 
-    //This update function checks to see if the escape button has been pushed, will then bring up pause menu
-    void Update()
+    void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (_instance != null && _instance != this) Destroy(this.gameObject); 
+        else _instance = this; 
+    }
+
+    public void TogglePause()
+    {
+        if (GamePaused)
         {
-            if (GamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
+
     //this function resumes the game from its paused state
     public void Resume()
     {

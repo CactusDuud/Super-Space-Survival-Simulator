@@ -6,6 +6,15 @@
             "id": "726b7934-942e-4c2c-8740-7e64eab3e062",
             "actions": [
                 {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "885048c3-b71e-4ca1-a6ca-08648a4a9b07",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Movement",
                     "type": "Value",
                     "id": "9db66482-3fc3-462b-a80e-a934bb45d4d8",
@@ -199,6 +208,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a77e21dd-4f80-4c88-847e-b7c99e6baaf5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

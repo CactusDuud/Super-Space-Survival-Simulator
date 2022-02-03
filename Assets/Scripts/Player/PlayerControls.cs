@@ -28,6 +28,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""id"": ""726b7934-942e-4c2c-8740-7e64eab3e062"",
             ""actions"": [
                 {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""885048c3-b71e-4ca1-a6ca-08648a4a9b07"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""9db66482-3fc3-462b-a80e-a934bb45d4d8"",
@@ -223,6 +232,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""UseTool"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a77e21dd-4f80-4c88-847e-b7c99e6baaf5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +251,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_PauseMenu = m_Gameplay.FindAction("PauseMenu", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_UseTool = m_Gameplay.FindAction("UseTool", throwIfNotFound: true);
         m_Gameplay_PlantCrop1 = m_Gameplay.FindAction("PlantCrop1", throwIfNotFound: true);
@@ -297,6 +318,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     // Gameplay
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
+    private readonly InputAction m_Gameplay_PauseMenu;
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_UseTool;
     private readonly InputAction m_Gameplay_PlantCrop1;
@@ -308,6 +330,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseMenu => m_Wrapper.m_Gameplay_PauseMenu;
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @UseTool => m_Wrapper.m_Gameplay_UseTool;
         public InputAction @PlantCrop1 => m_Wrapper.m_Gameplay_PlantCrop1;
@@ -324,6 +347,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
+                @PauseMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseMenu;
                 @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
@@ -349,6 +375,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
@@ -376,6 +405,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public GameplayActions @Gameplay => new GameplayActions(this);
     public interface IGameplayActions
     {
+        void OnPauseMenu(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnUseTool(InputAction.CallbackContext context);
         void OnPlantCrop1(InputAction.CallbackContext context);

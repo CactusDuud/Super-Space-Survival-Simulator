@@ -35,6 +35,9 @@ public class PlayerInput : MonoBehaviour
         // Subscribe to keyboard q press event to use the current tool
         _controls.Gameplay.UseTool.performed += _ => _currentTool.UseTool();
 
+        // Pause menu
+        _controls.Gameplay.PauseMenu.performed += _ => PauseMenu.GetInstance.TogglePause();
+
         //Each one Subscribes to a PlantCrop
         _controls.Gameplay.PlantCrop1.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 1 function
         //_controls.Gameplay.PlantCrop2.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 2 function
