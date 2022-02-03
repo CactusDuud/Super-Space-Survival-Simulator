@@ -1,3 +1,5 @@
+// Written by Sage Mahmud
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +8,7 @@ public class EatCrops : MonoBehaviour
 {
     [Header("References")]
     Transform _rootPosition;
+    [SerializeField] LayerMask _cropLayer;
 
     [Header("Attributes")]
     [SerializeField] float _eatCooldownDuration = 1.0f;
@@ -30,7 +33,7 @@ public class EatCrops : MonoBehaviour
     {
         if (_eatCooldown <= 0)
         {
-            Collider2D hit = Physics2D.OverlapCircle(_rootPosition.position, _reach);
+            Collider2D hit = Physics2D.OverlapCircle(_rootPosition.position, _reach, _cropLayer);
             
             if (hit != null && hit.CompareTag("CropTag"))
             {

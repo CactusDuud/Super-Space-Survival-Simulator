@@ -232,9 +232,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de5fa767472c3f46bc9041bd1651639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cropLayer:
+    serializedVersion: 2
+    m_Bits: 256
   _eatCooldownDuration: 1
   _damage: 1
-  _reach: 4
+  _reach: 1.08
 --- !u!1001 &6521230139262289499
 PrefabInstance:
   m_ObjectHideFlags: 0
