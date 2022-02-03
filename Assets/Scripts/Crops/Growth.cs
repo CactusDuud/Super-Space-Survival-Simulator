@@ -20,7 +20,8 @@ public class Growth : MonoBehaviour
     [Header("Statistics")]
     float _growthTimer;
     bool _canGrow;
-    public bool isHarvestable;
+    bool _isWithered;
+    bool _isHarvestable;
 
     void Awake()
     {
@@ -38,6 +39,7 @@ public class Growth : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!_health.Alive()) Wither();
         GrowClock();
     }
 
@@ -53,35 +55,40 @@ public class Growth : MonoBehaviour
 
     void GrowClock()
     {
-        if (_health.Alive())
+        if (!_isWithered)
         {
-            if (_canGrow && !isHarvestable)
+            if (_canGrow && !_isHarvestable)
             {
                 if (_growthTimer <= growthDuration) _growthTimer += Time.deltaTime;
                 else
                 {
                     _spriteRenderer.sprite = _harvestableSprite;
-                    isHarvestable = true;
+                    _isHarvestable = true;
                 }
-            }
+            } 
         }
-        else
+    }
+
+    void Wither()
+    {
+        if (!_isWithered)
         {
             GameManager.GetInstance.livingCrops -= 1;
             _spriteRenderer.sprite = _deadSprite;
             _canGrow = false;
-            isHarvestable = true;
+            _isHarvestable = true;
+            _isWithered = true;
         }
     }
 
     public void Harvest()
     {
-        if (isHarvestable)
+        if (_isHarvestable)
         {
             if (_health.Alive())
             {
                 _spriteRenderer.sprite = _growingSprite;
-                isHarvestable = false;
+                _isHarvestable = false;
                 GameManager.GetInstance.AddProsperity(_prosperityValue);
                 _growthTimer = 0;
             }

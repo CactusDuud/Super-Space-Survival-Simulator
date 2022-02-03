@@ -24,12 +24,12 @@ public class TargetingAI : MonoBehaviour
     {
         // TODO: Replace with ai eventually
         Vector2 targetDirection = DetermineDirection();
-        _movement.Move(targetDirection);
+        _movement.Move(targetDirection.normalized);
     }
 
     protected virtual Vector2 DetermineDirection()
     {
-        return (_movePoint.position - transform.position).normalized;
+        return (_movePoint.position - transform.position);
     }
 
     protected void FindMovePoint()
@@ -39,7 +39,8 @@ public class TargetingAI : MonoBehaviour
         if (_cropTargets.Length != 0)
         {
             GameObject _potentialTarget = _cropTargets[Random.Range(0, _cropTargets.Length - 1)];
-            if (_potentialTarget.GetComponent<Health>()?.Alive() == true)
+            Health healthScript = _potentialTarget.GetComponent<Health>();
+            if (healthScript != null && healthScript.Alive())
                 _movePoint = _potentialTarget.GetComponent<Transform>();
             else
                 _movePoint = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();

@@ -60,6 +60,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7814aa1af0323fd47b6bca92471137e1, type: 3}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: _deadSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c5a524457d7fce4e9bfc867ad9f50e7, type: 3}
+    - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: growthDuration
       value: 30
       objectReference: {fileID: 0}

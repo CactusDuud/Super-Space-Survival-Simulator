@@ -60,6 +60,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 47f1713e8b434a2458fcb72c65b3ca06, type: 3}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: _deadSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fc624e7d2f321ce48b2ca9dda9b93393, type: 3}
+    - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: _harvestableSprite
       value: 
       objectReference: {fileID: 21300000, guid: 47f1713e8b434a2458fcb72c65b3ca06, type: 3}

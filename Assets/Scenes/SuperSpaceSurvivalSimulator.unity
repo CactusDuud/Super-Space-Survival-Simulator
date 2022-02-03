@@ -7320,11 +7320,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemies:
-  - {fileID: 2329403875627426405, guid: 2e1bc98a966ac884a9b94279ff9b1db2, type: 3}
-  - {fileID: 765598085794406417, guid: 9133e5f5c7283a5439582a8fbf7de66b, type: 3}
-  - {fileID: 3228281152749621193, guid: ede99394d3d1d604bb087c62a8b2dc4a, type: 3}
-  - {fileID: 1736388379828853685, guid: 488f39dd6bee0a44996bf505bdff6486, type: 3}
-  - {fileID: 7006560905746460411, guid: aa505658206df8246809759d2375add4, type: 3}
+  - {fileID: 4835653664036297294, guid: 5ae0dfa9797533d4d904f7046fcd967e, type: 3}
+  - {fileID: 6977783818056674426, guid: 3604b5463e3db3a489058a1f5c309d81, type: 3}
+  - {fileID: 473870825500339247, guid: b96a750e172240646be5cc29cf13486b, type: 3}
+  - {fileID: 5741362749564567523, guid: 4cd8b45ec23e3514194c614d6f7cec61, type: 3}
+  - {fileID: 5305638349223632714, guid: a4b2026ac0b8e16479bbd65737cadfbf, type: 3}
   _spawnPoints:
   - {fileID: 560231263}
   - {fileID: 1143433150}
@@ -7341,7 +7341,7 @@ MonoBehaviour:
   _enemySpawnCap: 8
   _enemyCount: 0
   prosperity: 0
-  livingCrops: 5
+  livingCrops: 15
   GameOverMenu: {fileID: 1040921964}
   stateText: {fileID: 1034805277}
 --- !u!4 &2091923390
@@ -7552,6 +7552,10 @@ PrefabInstance:
     - target: {fileID: 4772005440113176238, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772005440113176238, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}

@@ -42,8 +42,11 @@ public class PlayerTool : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
-        else if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
+        other.GetComponent<Health>()?.Damage(_damage);
+        if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
+
+        // if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
+        // else if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
     }
 
     public void UseTool()

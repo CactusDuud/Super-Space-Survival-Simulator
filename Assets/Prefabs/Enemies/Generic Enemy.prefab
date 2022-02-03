@@ -175,4 +175,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eatCooldownDuration: 1
   _damage: 1
-  _reach: 1
+  _reach: 1.5
