@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameManager GetInstance { get { return _instance; } }
     [SerializeField] GameObject[] _enemies;
     [SerializeField] GameObject[] _spawnPoints;
+    [SerializeField] Transform enemyParent;
 
     [Header("State Variables")]
     [SerializeField] private GameState state;
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour
         _enemyCount++;
         GameObject _enemy = _enemies[Random.Range(0, _enemies.Length - 1)];
         Vector3 _spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length - 1)].transform.position;
-        GameObject _newEnemy = Instantiate(_enemy, _spawnPoint, Quaternion.identity);
+        GameObject _newEnemy = Instantiate(_enemy, _spawnPoint, Quaternion.identity, enemyParent);
         _newEnemy.transform.position = new Vector3(_newEnemy.transform.position.x, _newEnemy.transform.position.y, 0);
     }
 
