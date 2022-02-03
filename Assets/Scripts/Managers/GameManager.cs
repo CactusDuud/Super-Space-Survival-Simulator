@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public int livingCrops;
 
     [Header("Game UI")]
+    [SerializeField] TextMeshProUGUI prosperityText;
     public GameObject GameOverMenu;
     public TextMeshProUGUI stateText;
 
@@ -114,6 +115,8 @@ public class GameManager : MonoBehaviour
         }
         
         SetGameState(GameState.Day);
+
+        prosperityText.text = "0";
     }
 
     void Update()
@@ -165,10 +168,12 @@ public class GameManager : MonoBehaviour
     public void AddProsperity(int amount)
     {
         prosperity += amount;
+        prosperityText.text = $"{prosperity}";
     }
 
     public void SubtractProsperity(int amount)
     {
         prosperity -= amount;
+        prosperityText.text = $"{prosperity}";
     }
 }
