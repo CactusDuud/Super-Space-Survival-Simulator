@@ -16,6 +16,7 @@ public class PlayerTool : MonoBehaviour
     [SerializeField] int _damage = 1;
 
     [Header("Statistics")]
+    [SerializeField] bool _isUsingTool;
     float _useTime;
 
     void Awake()
@@ -26,12 +27,13 @@ public class PlayerTool : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_effectArea.enabled)
+        if (_isUsingTool)
         {
             _useTime -= Time.deltaTime;
 
             if (_useTime <= 0)
             {
+                _isUsingTool = false;
                 _effectArea.enabled = false;
                 _effectSprite.enabled = false;
             }
@@ -41,16 +43,22 @@ public class PlayerTool : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
-        else if (other.CompareTag("CropTag")) other.GetComponent<GrowAndHarvest>()?.Harvest();
+        else if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
     }
 
     public void UseTool()
     {
-        if (_effectArea.enabled == false)
+        if (_isUsingTool == false)
         {
+            _isUsingTool = true;
             _useTime = _useDuration;
             _effectArea.enabled = true;
             _effectSprite.enabled = true;
         }
+    }
+
+    public bool IsUsingTool()
+    {
+        return _isUsingTool;
     }
 }

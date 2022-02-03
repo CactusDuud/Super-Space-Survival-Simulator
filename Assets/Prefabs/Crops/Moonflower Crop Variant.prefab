@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 103113263825216035, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: _maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6989399462569418416, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f57441756b8d7054ca05bf7d2dc6c378, type: 3}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: growthDuration
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: _prosperityValue
-      value: 30
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: _harvestableSprite

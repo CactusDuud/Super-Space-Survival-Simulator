@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     // maybe when it runs out, destroy it
 
     [Header("Attributes")]
+    public bool doSelfCull;
     [SerializeField] int _maxHealth;
     int _health;
 
@@ -20,11 +21,16 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (_health <= 0)
+        if (doSelfCull && _health <= 0)
         {
             Debug.Log($"{this.name} has died");
             Destroy(gameObject);
         }
+    }
+
+    public bool Alive()
+    {
+        return _health > 0;
     }
     
     public void Heal(int amount)

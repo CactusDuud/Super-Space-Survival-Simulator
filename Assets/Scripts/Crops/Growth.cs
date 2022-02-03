@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class GrowAndHarvest : MonoBehaviour
+[RequireComponent(typeof(Health))]
+public class Growth : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Sprite _growingSprite;
     [SerializeField] Sprite _harvestableSprite;
+    [SerializeField] Sprite _deadSprite;
     SpriteRenderer _spriteRenderer;
+    Health _health;
 
     [Header("Attributes")]
     public float growthDuration;
@@ -23,6 +26,8 @@ public class GrowAndHarvest : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _growingSprite;
+
+        _health= GetComponent<Health>();
     }
 
     void Start()
@@ -38,7 +43,7 @@ public class GrowAndHarvest : MonoBehaviour
 
     void EnableGrowth()
     {
-        _canGrow = true;
+        if (_health.Alive()) _canGrow = true;
     }
 
     void DisableGrowth()
@@ -48,14 +53,24 @@ public class GrowAndHarvest : MonoBehaviour
 
     void GrowClock()
     {
-        if (_canGrow && !isHarvestable)
+        if (_health.Alive())
         {
-            if (_growthTimer <= growthDuration) _growthTimer += Time.deltaTime;
-            else
+            if (_canGrow && !isHarvestable)
             {
-                _spriteRenderer.sprite = _harvestableSprite;
-                isHarvestable = true;
+                if (_growthTimer <= growthDuration) _growthTimer += Time.deltaTime;
+                else
+                {
+                    _spriteRenderer.sprite = _harvestableSprite;
+                    isHarvestable = true;
+                }
             }
+        }
+        else
+        {
+            GameManager.GetInstance.livingCrops -= 1;
+            _spriteRenderer.sprite = _deadSprite;
+            _canGrow = false;
+            isHarvestable = true;
         }
     }
 
@@ -63,10 +78,14 @@ public class GrowAndHarvest : MonoBehaviour
     {
         if (isHarvestable)
         {
-            _spriteRenderer.sprite = _growingSprite;
-            isHarvestable = false;
-            GameManager.GetInstance.AddProsperity(_prosperityValue);
-            _growthTimer = 0;
+            if (_health.Alive())
+            {
+                _spriteRenderer.sprite = _growingSprite;
+                isHarvestable = false;
+                GameManager.GetInstance.AddProsperity(_prosperityValue);
+                _growthTimer = 0;
+            }
+            else Destroy(this.gameObject);
         }
     }
 }

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("State Variables")]
     [SerializeField] private GameState state;
+    private bool _gameOver;
 
     [Header("Time Variables")]
     [Tooltip("Length of a day in seconds")]
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Score Variables")]
     public int prosperity;
+    public int livingCrops;
 
     [Header("Game UI")]
     public GameObject GameOverMenu;
@@ -66,7 +68,7 @@ public class GameManager : MonoBehaviour
                 Nighttime();
                 break;
             case GameState.Lose:
-                stateText.text = "This IS THE END";
+                stateText.text = "GAME OVER";
                 GameOverMenu.SetActive(true);
                 Time.timeScale = 0f;
                 break;
@@ -113,6 +115,21 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.Day);
     }
 
+    void Update()
+    {
+        if (livingCrops <= 0)
+        {
+            _gameOver = true;
+            SetGameState(GameState.Lose);
+        }
+
+        if (!_gameOver)
+        {
+            if (_clockTime <= _dayLength * 0.5) SetGameState(GameState.Day);
+            else if (_clockTime <= _dayLength) SetGameState(GameState.Night);
+        }
+    }
+
     void FixedUpdate()
     {
         // Day/night clock
@@ -122,9 +139,6 @@ public class GameManager : MonoBehaviour
         // Spawn clock
         _spawnTimer += Time.deltaTime;
         if (_spawnTimer >= _spawnInterval && _enemyCount < _enemySpawnCap && _doEnemySpawning) SpawnEnemies();
-
-        if (_clockTime <= _dayLength * 0.5) SetGameState(GameState.Day);
-        else if (_clockTime <= _dayLength) SetGameState(GameState.Night);
     }
 
     void SpawnEnemies()

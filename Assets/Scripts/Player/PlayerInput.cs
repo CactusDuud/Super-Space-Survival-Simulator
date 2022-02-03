@@ -59,7 +59,8 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        _movement.Move(_movementDirection);
+        if (!_currentTool.IsUsingTool()) _movement.Move(_movementDirection);
+        else _movement.Move(Vector2.zero);
     }
 
     // Not sure if this is necessary
