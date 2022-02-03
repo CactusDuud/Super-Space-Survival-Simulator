@@ -31,8 +31,10 @@ public class EatCrops : MonoBehaviour
         if (_eatCooldown <= 0)
         {
             Collider2D hit = Physics2D.OverlapCircle(_rootPosition.position, _reach);
+            
             if (hit != null && hit.CompareTag("CropTag"))
             {
+                Debug.Log($"{this.name} nibbled on {hit.name}");
                 hit.GetComponent<Health>()?.Damage(_damage);
                 _eatCooldown = _eatCooldownDuration;
             }

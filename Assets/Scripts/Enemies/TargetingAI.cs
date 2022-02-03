@@ -22,32 +22,42 @@ public class TargetingAI : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        // TODO: Replace with ai eventually
+        // TODO: Replace with navmesh or A* AI eventually
         Vector2 targetDirection = DetermineDirection();
         _movement.Move(targetDirection.normalized);
     }
 
     protected virtual Vector2 DetermineDirection()
     {
-        return (_movePoint.position - transform.position);
+        if (_movePoint != null) return (_movePoint.position - transform.position);
+        else return Vector2.zero;
     }
 
     protected void FindMovePoint()
     {
-        GameObject[] _cropTargets = GameObject.FindGameObjectsWithTag("CropTag");
+        if (_movePoint == null)
+        {
+            GameObject[] _possibleTargets = GameObject.FindGameObjectsWithTag("CropTag");
 
-        if (_cropTargets.Length != 0)
-        {
-            GameObject _potentialTarget = _cropTargets[Random.Range(0, _cropTargets.Length - 1)];
-            Health healthScript = _potentialTarget.GetComponent<Health>();
-            if (healthScript != null && healthScript.Alive())
-                _movePoint = _potentialTarget.GetComponent<Transform>();
+            if (_possibleTargets.Length != 0)
+            {
+                GameObject _potentialTarget = _possibleTargets[Random.Range(0, _possibleTargets.Length - 1)];
+                Health healthScript = _potentialTarget.GetComponent<Health>();
+                if (healthScript != null && healthScript.Alive())
+                    _movePoint = _potentialTarget.GetComponent<Transform>();
+                else
+                    _movePoint = null;
+            }
             else
+            {
                 _movePoint = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
+            }
         }
-        else
+        else if (_movePoint.CompareTag("CropTag"))
         {
-            _movePoint = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
+            Health healthScript = _movePoint.GetComponent<Health>();
+            if (healthScript != null && !healthScript.Alive()) _movePoint = null;
         }
+        
     }
 }

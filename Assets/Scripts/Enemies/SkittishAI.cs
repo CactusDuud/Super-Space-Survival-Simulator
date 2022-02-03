@@ -7,7 +7,7 @@ using UnityEngine;
 public class SkittishAI : TargetingAI
 {
     [Header("References")]
-    GameObject _fleeTarget;
+    Transform _fleeTarget;
     float _baseSpeed;
 
     [Header("Attributes")]
@@ -23,6 +23,7 @@ public class SkittishAI : TargetingAI
         base.Awake();
 
         _baseSpeed = _movement.speed;
+        _fleeTarget = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
     }
 
     protected override void FixedUpdate()
@@ -35,16 +36,20 @@ public class SkittishAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_fleeTimer > 0)
+        if (_movePoint != null)
         {
-            _movement.speed = _baseSpeed * _fleeSpeedFactor;
-            return (transform.position - _movePoint.position).normalized;
+            if (_fleeTimer > 0)
+            {
+                _movement.speed = _baseSpeed * _fleeSpeedFactor;
+                return (transform.position - _fleeTarget.position).normalized;
+            }
+            else
+            {
+                _movement.speed = _baseSpeed;
+                return (_movePoint.position - transform.position).normalized;
+            }
         }
-        else
-        {
-            _movement.speed = _baseSpeed;
-            return (_movePoint.position - transform.position).normalized;
-        }
+        else return Vector2.zero;
     }
 
     float FindEnemyDistance()

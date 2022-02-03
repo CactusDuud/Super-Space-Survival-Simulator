@@ -30,14 +30,18 @@ public class SneakyAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_isHiding)
+        if (_movePoint != null)
         {
-            return Vector2.zero;
+            if (_isHiding)
+            {
+                return Vector2.zero;
+            }
+            else
+            {
+                return (_movePoint.position - transform.position).normalized;
+            }
         }
-        else
-        {
-            return (_movePoint.position - transform.position).normalized;
-        }
+        else return Vector2.zero;
     }
 
     void HideBehaviourClock()

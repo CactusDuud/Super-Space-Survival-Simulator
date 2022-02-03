@@ -80,6 +80,7 @@ public class Health : MonoBehaviour
     //subtracts too health by given perameter (damage taken)
     public void Damage(int amount)
     {
+        Debug.Log($"{this.name} lost {amount} health");
         _health -= amount;
         SetHealth(_health);
     }

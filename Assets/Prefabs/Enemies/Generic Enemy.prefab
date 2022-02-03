@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eatCooldownDuration: 1
   _damage: 1
-  _reach: 1.5
+  _reach: 4
 --- !u!1001 &6521230139262289499
 PrefabInstance:
   m_ObjectHideFlags: 0
