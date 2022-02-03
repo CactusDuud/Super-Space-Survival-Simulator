@@ -16,7 +16,7 @@ public class PlayerTool : MonoBehaviour
     [SerializeField] int _damage = 1;
 
     [Header("Statistics")]
-    [SerializeField] bool _isUsingTool;
+    bool _isUsingTool;
     float _useTime;
 
     void Awake()
@@ -40,7 +40,7 @@ public class PlayerTool : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
         else if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
