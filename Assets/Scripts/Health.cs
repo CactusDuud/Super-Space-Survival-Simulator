@@ -14,7 +14,6 @@ public class Health : MonoBehaviour
     public Slider slider;
     public Gradient healthColor;
     public Image fill;
-    //public GameObject healthObject;
 
     [Header("Attributes")]
     public bool doSelfCull;
@@ -31,10 +30,8 @@ public class Health : MonoBehaviour
     {
         if (doSelfCull && _health <= 0)
         {
-            //Debug.Log($"{healthObject.name} has died");
-            //Destroy(healthObject);
-            //Debug.Log($"{this.name} has died");
-            //Destroy(gameObject);
+            Debug.Log($"{this.name} has died");
+            Destroy(gameObject);
         }
     }
 
