@@ -15,7 +15,6 @@ public class FlipFacing : MonoBehaviour
         _objectTransform = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 _newScale = _objectTransform.localScale;
