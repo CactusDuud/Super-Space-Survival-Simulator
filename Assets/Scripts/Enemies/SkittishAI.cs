@@ -36,17 +36,17 @@ public class SkittishAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_movePoint != null)
+        if (_target != null)
         {
             if (_fleeTimer > 0)
             {
                 _movement.speed = _baseSpeed * _fleeSpeedFactor;
-                return (transform.position - _fleeTarget.position).normalized;
+                return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
             }
             else
             {
                 _movement.speed = _baseSpeed;
-                return (_movePoint.position - transform.position).normalized;
+                return transform.position - (Vector3)_path.vectorPath[_currentWaypoint];
             }
         }
         else return Vector2.zero;

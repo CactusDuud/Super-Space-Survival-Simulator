@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+// Written by Sage Mahmud
+
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Transform))]
 public class FlipFacing : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
@@ -11,7 +9,7 @@ public class FlipFacing : MonoBehaviour
 
     void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponentInParent<Rigidbody2D>();
         _objectTransform = GetComponent<Transform>();
     }
 

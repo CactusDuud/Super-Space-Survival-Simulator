@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1083759332421167357, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fca0627ccc4d2bd4ba2bbe812b1a5597, type: 3}
     - target: {fileID: 3278018468030546637, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: speed
-      value: 4
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110476712828936711, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+      propertyPath: _reach
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5824646172893007975, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_Sprite

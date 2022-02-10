@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1083759332421167357, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: df6677095dbdc014782ffa6137012aff, type: 3}
     - target: {fileID: 3278018468030546637, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: speed
-      value: 2
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5824646172893007975, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_Sprite
@@ -91,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3e451954e3c74469d028cd3e84c719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePoint: {fileID: 0}
+  _target: {fileID: 0}
   _fleeDistance: 5
   _fleeSpeedFactor: 1.5
   _fleeDuration: 1

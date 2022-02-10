@@ -28,7 +28,7 @@ public class CropSpawner : MonoBehaviour
     {
         Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
         Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
-        centerCell = new Vector3(centerCell.x, centerCell.y+ elevation, centerCell.z);
+        centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
 
         Instantiate(_plant1, centerCell, Quaternion.identity, _cropParent);
         //position of crops is now good too go

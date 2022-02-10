@@ -30,7 +30,7 @@ public class SneakyAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_movePoint != null)
+        if (_target != null)
         {
             if (_isHiding)
             {
@@ -38,7 +38,7 @@ public class SneakyAI : TargetingAI
             }
             else
             {
-                return (_movePoint.position - transform.position).normalized;
+                return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
             }
         }
         else return Vector2.zero;

@@ -7,7 +7,6 @@ public class SpawnManager : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject[] _enemies;
     [SerializeField] GameObject _spawnPointParent;
-    Transform[] _spawnPoints;
     [SerializeField] Transform enemyParent;
 
     [Header("Enemy Variables")]
@@ -23,8 +22,6 @@ public class SpawnManager : MonoBehaviour
     {
         GameManager.GetInstance.OnDaytime += DisbleSpawning;
         GameManager.GetInstance.OnNighttime += EnableSpawning;
-
-        _spawnPoints = GetComponentsInChildren<Transform>();
     }
 
     void FixedUpdate()
@@ -41,8 +38,8 @@ public class SpawnManager : MonoBehaviour
         _spawnTimer = 0.0f;
         enemyCount++;
         GameObject _enemy = _enemies[Random.Range(0, _enemies.Length - 1)];
-        Vector3 _spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length - 1)].transform.position;
-        GameObject _newEnemy = Instantiate(_enemy, _spawnPoint, Quaternion.identity, enemyParent);
+        Transform _spawnPoint = _spawnPointParent.transform.GetChild(Random.Range(0, _spawnPointParent.transform.childCount - 1));
+        GameObject _newEnemy = Instantiate(_enemy, _spawnPoint.position, Quaternion.identity, enemyParent);
         _newEnemy.transform.position = new Vector3(_newEnemy.transform.position.x, _newEnemy.transform.position.y, 0);
     }
 

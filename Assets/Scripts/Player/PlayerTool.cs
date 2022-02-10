@@ -22,7 +22,7 @@ public class PlayerTool : MonoBehaviour
     void Awake()
     {
         _effectArea = GetComponent<Collider2D>();
-        _effectSprite = GetComponent<SpriteRenderer>();
+        _effectSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void FixedUpdate()
