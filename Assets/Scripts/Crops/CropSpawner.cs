@@ -19,6 +19,7 @@ public class CropSpawner : MonoBehaviour
 
     private Vector3 _placement;
     private bool _onSoil = false;
+    private bool _isplanted = false;
     
 
 
@@ -26,11 +27,14 @@ public class CropSpawner : MonoBehaviour
     //this function gets a string type that lets the function know which plant too instantiate
     public void CreatePlant(string plantType)
     {
-        Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
-        Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
-        centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
+        if (_onSoil && !_isplanted) 
+        {
+            Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
+            Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
+            centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
 
-        Instantiate(_plant1, centerCell, Quaternion.identity, _cropParent);
+            Instantiate(_plant1, centerCell, Quaternion.identity, _cropParent);
+        }
         //position of crops is now good too go
 
         /*if (_onSoil)
@@ -45,32 +49,35 @@ public class CropSpawner : MonoBehaviour
 
 
     }
-    /*
-     *  
-        Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
-        transform.position = gridLayout.CellToWorld(cellPosition); 
-         var grid = _refMan.ground.GetComponentInParent<Grid>();
-            if (_refMan.ground.GetTile(grid.WorldToCell(transform.position)))
-            
-           
+    
 
-            if(!_refMan.ground.GetTile(_refMan.ground.layoutGrid.WorldToCell(transform.position)))
-           
-
-    */
-    //this function will basically look at what the player collidered with and turn true/false if they collided with soil
-    /*void OnTriggerEnter2D(Collider2D other)
+    //this function will basically looking at what the player collided with and turn true if they collided with soil/plant
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.tag);
-        if (_onSoil)
+        if (other.gameObject.CompareTag("CropTag")) 
+        {
+            Debug.Log("plant tile eenter");
+            _isplanted = true;
+        }
+        if (other.gameObject.CompareTag("Soil Tag")) 
+        {
+            _onSoil = true;
+        }  
+    }
+
+
+    //this function will basically looking at what the player collided with and turn false if they collided with soil/plant
+    void OnTriggerExit2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("CropTag"))
+        {
+            Debug.Log("plant tile exit");
+            _isplanted = false;
+        }
+        if (other.gameObject.CompareTag("Soil Tag"))
         {
             _onSoil = false;
         }
-        else
-        {
-            _onSoil = true;
-        }
-        
-    }*/
+    }
 
 }
