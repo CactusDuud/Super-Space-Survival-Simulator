@@ -53,14 +53,23 @@ public class PauseMenu : MonoBehaviour
         PauseUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
+        //GameObject.Find("PlayerTag").GetComponent<PlayerTool>().enabled = true;
     }
 
     //this function pauses the game
     public void Pause() 
     {
         PauseUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0.01f;
         GamePaused = true;
+
+
+     //   if (GamePaused == true)
+       // {
+           // GameObject.Find("PlayerTag").GetComponent<PlayerTool>().enabled = false;
+        //}
+        
+
     }
 
     //this function resumes the game and then loads the main menu scene

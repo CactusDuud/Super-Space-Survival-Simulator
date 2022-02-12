@@ -17,6 +17,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] Color _nightColor;
     [SerializeField] float _nightlightIntensity = 0.5f;
 
+    
+
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class TimeManager : MonoBehaviour
         // Day/night clock
         _clockTime += Time.deltaTime;
         if (_clockTime >= _dayLength) _clockTime = 0.0f;
+
     }
 
     void Daylight()

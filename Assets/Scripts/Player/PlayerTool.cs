@@ -31,7 +31,7 @@ public class PlayerTool : MonoBehaviour
         {
             _useTime -= Time.deltaTime;
 
-            if (_useTime <= 0)
+            if (_useTime <= 0.01)
             {
                 _isUsingTool = false;
                 _effectArea.enabled = false;
