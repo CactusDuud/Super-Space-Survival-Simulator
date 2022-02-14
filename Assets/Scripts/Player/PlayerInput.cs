@@ -38,12 +38,12 @@ public class PlayerInput : MonoBehaviour
         // Pause menu
         _controls.Gameplay.PauseMenu.performed += _ => PauseMenu.GetInstance.TogglePause();
 
-        //Each one Subscribes to a PlantCrop
-        _controls.Gameplay.PlantCrop1.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 1 function
-        //_controls.Gameplay.PlantCrop2.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 2 function
-        //_controls.Gameplay.PlantCrop3.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 3 function 
-        //_controls.Gameplay.PlantCrop4.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 4 function 
-        //_controls.Gameplay.PlantCrop5.performed += ctx => _cropSpawner.CreatePlant("potato");//plant crop 5 function 
+        // Each one Subscribes to a PlantCrop
+        _controls.Gameplay.PlantCrop1.performed += ctx => _cropSpawner.CreatePlant(CropSpawner.plantType.potato);
+        _controls.Gameplay.PlantCrop2.performed += ctx => _cropSpawner.CreatePlant(CropSpawner.plantType.carrot);
+        _controls.Gameplay.PlantCrop3.performed += ctx => _cropSpawner.CreatePlant(CropSpawner.plantType.beet);
+        _controls.Gameplay.PlantCrop4.performed += ctx => _cropSpawner.CreatePlant(CropSpawner.plantType.sunflower);
+        _controls.Gameplay.PlantCrop5.performed += ctx => _cropSpawner.CreatePlant(CropSpawner.plantType.moonflower);
 
         _movement = GetComponent<Movement>();
     }

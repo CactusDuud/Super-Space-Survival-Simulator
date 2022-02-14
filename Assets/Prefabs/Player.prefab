@@ -249,7 +249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3a892d8b9d8f248a3075179ffdd3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plant1: {fileID: 0}
+  _plants:
+  - {fileID: 8519894031690272057, guid: 3a961b82cfb145a49a3afe89046ceb73, type: 3}
+  - {fileID: 5667234515555067218, guid: 5c705acf568e09b4ba2a9702e4c764b7, type: 3}
+  - {fileID: 7696051500774780518, guid: 8aac482ac091bbe4f91837d39d4a530c, type: 3}
+  - {fileID: 3035392522817852122, guid: 2358899f6b8bdfc40974c58c6845dd2d, type: 3}
+  - {fileID: 1643491989424303908, guid: d8e2d7b00013b6340883302f0d88c8cb, type: 3}
   _cropParent: {fileID: 0}
   _gridLayout: {fileID: 0}
   elevation: -0.25

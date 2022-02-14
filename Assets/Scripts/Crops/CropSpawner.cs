@@ -9,8 +9,17 @@ using UnityEngine;
 public class CropSpawner : MonoBehaviour
 {
     //variables will help with instantiate prefabs and put them in the correct heirarchy
-    [Header("Prefabs")]
-    [SerializeField] private GameObject _plant1;
+    [Header("References")]
+    [SerializeField] private GameObject[] _plants;
+    public enum plantType
+    {
+        potato,
+        carrot,
+        beet,
+        sunflower,
+        moonflower
+    }
+
     [SerializeField] private Transform _cropParent;
 
     [Header("Placement")]
@@ -25,15 +34,15 @@ public class CropSpawner : MonoBehaviour
 
 
     //this function gets a string type that lets the function know which plant too instantiate
-    public void CreatePlant(string plantType)
+    public void CreatePlant(plantType plantIndex)
     {
         if (_onSoil && !_isplanted) 
         {
             Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
             Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
             centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
-
-            GameObject _newCrop = Instantiate(_plant1, centerCell, Quaternion.identity, _cropParent);
+            
+            GameObject _newCrop = Instantiate(_plants[(int)plantIndex], centerCell, Quaternion.identity, _cropParent);
             CropManager.GetInstance.AddCrop(_newCrop);
         }
         //position of crops is now good too go
