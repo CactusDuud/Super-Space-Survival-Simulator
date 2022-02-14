@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: df6677095dbdc014782ffa6137012aff, type: 3}
     - target: {fileID: 3278018468030546637, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: speed
-      value: 250
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 5824646172893007975, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_Sprite
@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
+  _nextWaypointDistance: 0.1
+  _pathUpdateRate: 0.5
+  _stoppingDistance: 1
   _fleeDistance: 5
   _fleeSpeedFactor: 1.5
   _fleeDuration: 1

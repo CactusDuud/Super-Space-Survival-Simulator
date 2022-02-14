@@ -7492,7 +7492,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 4
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -7992,6 +7992,7 @@ GameObject:
   - component: {fileID: 2091923389}
   - component: {fileID: 2091923391}
   - component: {fileID: 2091923392}
+  - component: {fileID: 2091923393}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -8013,7 +8014,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   prosperity: 0
-  livingCrops: 15
   prosperityText: {fileID: 1202713683}
   GameOverMenu: {fileID: 1040921964}
   stateText: {fileID: 1034805277}
@@ -8043,7 +8043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedcf6d13399b8c46b56a189c4e0a3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayLength: 1800
+  _dayLength: 180
   _clockTime: 0
   _globalLight: {fileID: 996681210}
   _dayColor: {r: 1, g: 0.99468935, b: 0.7688679, a: 0.5529412}
@@ -8073,6 +8073,18 @@ MonoBehaviour:
   _spawnInterval: 20
   _enemySpawnCap: 8
   enemyCount: 0
+--- !u!114 &2091923393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091923388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6e3fd87c1a5b44b9bdfb824bde2309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2098504293
 GameObject:
   m_ObjectHideFlags: 0
@@ -8295,6 +8307,10 @@ PrefabInstance:
     - target: {fileID: 4772005440113176238, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772005440113176239, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
+      propertyPath: speed
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}

@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 857d3d09079adb94f871687b387560bd, type: 3}
+    - target: {fileID: 3278018468030546637, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+      propertyPath: speed
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 5824646172893007975, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -87,6 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a50b42b237408d4bafd751bc7c200f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePoint: {fileID: 0}
+  _target: {fileID: 0}
+  _nextWaypointDistance: 0.1
+  _pathUpdateRate: 0.5
+  _stoppingDistance: 1
   _walkDuration: 4
   _hideDuration: 3

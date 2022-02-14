@@ -17,9 +17,9 @@ public class TargetingAI : MonoBehaviour
     protected Path _path;
     Seeker _seeker;
     protected int _currentWaypoint;
-    float _nextWaypointDistance = 0.1f;
-    bool _reachedTarget;
-    float _pathUpdateRate = 0.5f;
+    [SerializeField] float _nextWaypointDistance = 0.1f;
+    [SerializeField] float _pathUpdateRate = 0.5f;
+    [SerializeField] float _stoppingDistance = 1.0f;
 
     protected virtual void Awake()
     {
@@ -38,14 +38,16 @@ public class TargetingAI : MonoBehaviour
         if (_path != null)
         {
             // Check if we are already where we want to be
-            if (_currentWaypoint >= _path.vectorPath.Count) _reachedTarget = true;
-            else _reachedTarget = false;
+            if (_currentWaypoint < _path.vectorPath.Count)
+            {
+                // Move towards our target if it's farther than the stopping distance
+                if (Vector2.Distance(_target.position, transform.position) > _stoppingDistance)
+                    _movement.Move(DetermineDirection().normalized);
 
-            // Move towards our target otherwise
-            _movement.Move(DetermineDirection().normalized);
-
-            // Check if we've successfully stepped towards the target
-            if (Vector2.Distance(transform.position, _path.vectorPath[_currentWaypoint]) <= _nextWaypointDistance) _currentWaypoint++;
+                // Check if we've successfully stepped towards the target
+                if (Vector2.Distance(transform.position, _path.vectorPath[_currentWaypoint]) <= _nextWaypointDistance)
+                    _currentWaypoint++;
+            }    
         }
     }
 
@@ -56,6 +58,7 @@ public class TargetingAI : MonoBehaviour
 
     void UpdatePath()
     {
+        // Only look for a new path if not calculating one right now
         if (_seeker.IsDone())
         {
             FindTarget();
@@ -84,11 +87,7 @@ public class TargetingAI : MonoBehaviour
         // Non-null case (check if the target is dead; if so, look for a new one)
         else if (_target.CompareTag("CropTag"))
         {
-            if (!_target.GetComponent<Health>()?.Alive() ?? false)
-            {
-                Debug.Log($"{_target.name} is dead");
-                _target = null;
-            } 
+            if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = null;
         }
         
     }

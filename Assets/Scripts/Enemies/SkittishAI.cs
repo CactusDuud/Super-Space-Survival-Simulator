@@ -41,12 +41,12 @@ public class SkittishAI : TargetingAI
             if (_fleeTimer > 0)
             {
                 _movement.speed = _baseSpeed * _fleeSpeedFactor;
-                return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
+                return transform.position - _fleeTarget.position;
             }
             else
             {
                 _movement.speed = _baseSpeed;
-                return transform.position - (Vector3)_path.vectorPath[_currentWaypoint];
+                return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
             }
         }
         else return Vector2.zero;

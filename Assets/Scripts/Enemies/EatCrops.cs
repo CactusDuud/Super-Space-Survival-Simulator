@@ -13,7 +13,7 @@ public class EatCrops : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] float _eatCooldownDuration = 1.0f;
     [SerializeField] int _damage = 1;
-    [SerializeField] float _reach = 1;
+    [SerializeField] float _reach = 1.0f;
 
     [Header("Statistics")]
     float _eatCooldown;
