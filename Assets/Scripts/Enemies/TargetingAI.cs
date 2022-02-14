@@ -12,6 +12,10 @@ public class TargetingAI : MonoBehaviour
     [Header("References")]
     protected Movement _movement;
     [SerializeField] protected Transform _target;
+    protected float _baseSpeed;
+
+    [Header("Attributes")]
+    [SerializeField] protected float _daySpeedPenalty = 0.5f;
 
     [Header("Pathfinding")]
     protected Path _path;
@@ -25,10 +29,15 @@ public class TargetingAI : MonoBehaviour
     {
         _movement = GetComponent<Movement>();
         _seeker= GetComponent<Seeker>();
+
+        _baseSpeed = _movement.speed;
     }
 
     void Start()
     {
+        GameManager.GetInstance.OnDaytime += DaySlow;
+        GameManager.GetInstance.OnNighttime += NightUnslow;
+
         FindTarget();
         InvokeRepeating("UpdatePath", 0f, _pathUpdateRate);
     }
@@ -90,5 +99,15 @@ public class TargetingAI : MonoBehaviour
             if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = null;
         }
         
+    }
+
+    protected virtual void DaySlow()
+    {
+        _movement.speed = _baseSpeed * _daySpeedPenalty;
+    }
+
+    protected virtual void NightUnslow()
+    {
+        _movement.speed = _baseSpeed;
     }
 }

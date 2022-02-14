@@ -8,7 +8,6 @@ public class SkittishAI : TargetingAI
 {
     [Header("References")]
     Transform _fleeTarget;
-    float _baseSpeed;
 
     [Header("Attributes")]
     [SerializeField] float _fleeDistance = 5f;
@@ -22,7 +21,6 @@ public class SkittishAI : TargetingAI
     {
         base.Awake();
 
-        _baseSpeed = _movement.speed;
         _fleeTarget = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
     }
 
@@ -73,5 +71,17 @@ public class SkittishAI : TargetingAI
     void FleeBehaviourClock()
     {
         if (_fleeTimer > 0) _fleeTimer -= Time.deltaTime;
+    }
+
+    protected override void DaySlow()
+    {
+        if (_fleeTimer > 0) _movement.speed = _baseSpeed * _fleeSpeedFactor * _daySpeedPenalty;
+        else _movement.speed = _baseSpeed * _daySpeedPenalty;
+    }
+
+    protected override void NightUnslow()
+    {
+        if (_fleeTimer > 0) _movement.speed = _baseSpeed * _fleeSpeedFactor;
+        else _movement.speed = _baseSpeed;
     }
 }
