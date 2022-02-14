@@ -8237,10 +8237,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7696051500774780518, guid: 8aac482ac091bbe4f91837d39d4a530c, type: 3}
     - target: {fileID: 1597479504, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
-      propertyPath: elevation
-      value: -0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597479504, guid: 29dfa5cc4ba951148ae96a221a0337da, type: 3}
       propertyPath: cropParent
       value: 
       objectReference: {fileID: 313540417}

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5249505156581386708}
   - component: {fileID: 1083759332421167357}
-  - component: {fileID: 1689258132400696781}
   m_Layer: 7
   m_Name: Enemy Sprite
   m_TagString: Untagged
@@ -83,18 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1689258132400696781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871662698208727259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757d5eb6b8a3c3246a213b98a42be52d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8479432071229173366
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9bdd8e26e6eb64a9c8f3ad0744e8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gfx: {fileID: 5249505156581386708}
   speed: 150
 --- !u!114 &574073217985960277
 MonoBehaviour:
@@ -207,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
+  _daySpeedPenalty: 0.5
   _nextWaypointDistance: 0.1
   _pathUpdateRate: 0.5
   _stoppingDistance: 1.8
