@@ -12,15 +12,14 @@ public class GameManager : MonoBehaviour
 
     [Header("State Variables")]
     [SerializeField] private GameState state;
-    private bool _gameOver;
 
     [Header("References")]
-    private TimeManager timeManager;
-    private SpawnManager spawnManager;
+    private TimeManager _timeManager;
+    private SpawnManager _spawnManager;
+    private CropManager _cropManager;
 
     [Header("Score Variables")]
     public int prosperity;
-    public int livingCrops;
 
     [Header("Game UI")]
     [SerializeField] TextMeshProUGUI prosperityText;
@@ -75,8 +74,9 @@ public class GameManager : MonoBehaviour
         if (_instance != null && _instance != this) Destroy(this.gameObject);
         else _instance = this; 
 
-        timeManager = GetComponent<TimeManager>();
-        spawnManager = GetComponent<SpawnManager>();
+        _timeManager = GetComponent<TimeManager>();
+        _spawnManager = GetComponent<SpawnManager>();
+        _cropManager = GetComponent<CropManager>();
         
         SetGameState(GameState.Day);
 
@@ -85,16 +85,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (livingCrops <= 0)
+        if (!_cropManager.IsLivingCrop()) SetGameState(GameState.Lose);
+        else
         {
-            _gameOver = true;
-            SetGameState(GameState.Lose);
-        }
-
-        if (!_gameOver)
-        {
-            if (timeManager.IsDaytime()) SetGameState(GameState.Day);
-            else if (timeManager.IsNighttime()) SetGameState(GameState.Night);
+            if (_timeManager.IsDaytime()) SetGameState(GameState.Day);
+            else if (_timeManager.IsNighttime()) SetGameState(GameState.Night);
         }
     }
 

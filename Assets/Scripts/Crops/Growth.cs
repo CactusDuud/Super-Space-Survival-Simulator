@@ -73,7 +73,7 @@ public class Growth : MonoBehaviour
     {
         if (!_isWithered)
         {
-            GameManager.GetInstance.livingCrops -= 1;
+            CropManager.GetInstance.RemoveCrop(this.gameObject);
             _spriteRenderer.sprite = _deadSprite;
             _canGrow = false;
             _isHarvestable = true;

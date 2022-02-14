@@ -29,6 +29,7 @@ public class TargetingAI : MonoBehaviour
 
     void Start()
     {
+        FindTarget();
         InvokeRepeating("UpdatePath", 0f, _pathUpdateRate);
     }
 
@@ -73,26 +74,21 @@ public class TargetingAI : MonoBehaviour
 
     protected void FindTarget()
     {
+        // Null case (find a new target)
         if (_target == null)
         {
-            GameObject[] _possibleTargets = GameObject.FindGameObjectsWithTag("CropTag");
+            _target = CropManager.GetInstance.GetRandomCrop().transform;
 
-            if (_possibleTargets.Length != 0)
-            {
-                GameObject _potentialTarget = _possibleTargets[Random.Range(0, _possibleTargets.Length - 1)];
-                if (!_target.GetComponent<Health>()?.Alive() ?? false)
-                    _target = _potentialTarget.GetComponent<Transform>();
-                else
-                    _target = null;
-            }
-            else
-            {
-                _target = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
-            }
+            if (_target == null)  _target = GameObject.FindGameObjectWithTag("PlayerTag").transform;
         }
+        // Non-null case (check if the target is dead; if so, look for a new one)
         else if (_target.CompareTag("CropTag"))
         {
-            if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = null;
+            if (!_target.GetComponent<Health>()?.Alive() ?? false)
+            {
+                Debug.Log($"{_target.name} is dead");
+                _target = null;
+            } 
         }
         
     }

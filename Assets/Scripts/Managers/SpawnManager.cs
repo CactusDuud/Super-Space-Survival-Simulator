@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("Singleton Insurance")]
+    private static SpawnManager _instance;
+    public static SpawnManager GetInstance { get { return _instance; } }
+
     [Header("References")]
     [SerializeField] GameObject[] _enemies;
     [SerializeField] GameObject _spawnPointParent;
@@ -17,7 +21,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] int _enemySpawnCap = 8;
     public int enemyCount;
 
-    // Start is called before the first frame update
+    
+    void Awake()
+    {
+        if (_instance != null && _instance != this) Destroy(this.gameObject);
+        else _instance = this; 
+    }
+
     void Start()
     {
         GameManager.GetInstance.OnDaytime += DisbleSpawning;

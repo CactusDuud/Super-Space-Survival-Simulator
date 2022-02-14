@@ -33,7 +33,8 @@ public class CropSpawner : MonoBehaviour
             Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
             centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
 
-            Instantiate(_plant1, centerCell, Quaternion.identity, _cropParent);
+            GameObject _newCrop = Instantiate(_plant1, centerCell, Quaternion.identity, _cropParent);
+            CropManager.GetInstance.AddCrop(_newCrop);
         }
         //position of crops is now good too go
 
@@ -56,7 +57,7 @@ public class CropSpawner : MonoBehaviour
     {
         if (other.gameObject.CompareTag("CropTag")) 
         {
-            Debug.Log("plant tile eenter");
+            Debug.Log("plant tile enter");
             _isplanted = true;
         }
         if (other.gameObject.CompareTag("Soil Tag")) 

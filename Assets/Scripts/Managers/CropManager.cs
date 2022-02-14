@@ -7,16 +7,41 @@ using UnityEngine.Tilemaps;
 
 public class CropManager : MonoBehaviour
 {
-    [SerializeField] Tilemap _cropMap;
-    Dictionary<Vector3Int, GameObject> _cropTiles;
+    [Header("Singleton Insurance")]
+    private static CropManager _instance;
+    public static CropManager GetInstance { get { return _instance; } }
+
+    [Header("References")]
+    List<GameObject> _livingCrops = new List<GameObject>();
 
     void Awake()
     {
-        _cropTiles = new Dictionary<Vector3Int, GameObject>();
-    } 
+        if (_instance != null && _instance != this) Destroy(this.gameObject);
+        else _instance = this; 
 
-    void SetCrop(Vector3Int tilePos, GameObject crop)
+        foreach (GameObject _crop in GameObject.FindGameObjectsWithTag("CropTag"))
+        {
+            _livingCrops.Add(_crop);
+        }
+    }
+
+    public GameObject GetRandomCrop()
     {
-        if (!_cropTiles.ContainsKey(tilePos)) _cropTiles.Add(tilePos, crop);
+        return _livingCrops[Random.Range(0, _livingCrops.Count - 1)];
+    }
+
+    public void AddCrop(GameObject crop)
+    {
+        _livingCrops.Add(crop);
+    }
+
+    public void RemoveCrop(GameObject crop)
+    {
+        _livingCrops.Remove(crop);
+    }
+
+    public bool IsLivingCrop()
+    {
+        return _livingCrops.Count > 0;
     }
 }

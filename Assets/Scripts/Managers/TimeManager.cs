@@ -5,6 +5,10 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class TimeManager : MonoBehaviour
 {
+    [Header("Singleton Insurance")]
+    private static TimeManager _instance;
+    public static TimeManager GetInstance { get { return _instance; } }
+
     [Header("Time Variables")]
     [Tooltip("Length of a day in seconds")]
     [SerializeField] int _dayLength = 1800;
@@ -18,7 +22,11 @@ public class TimeManager : MonoBehaviour
     [SerializeField] float _nightlightIntensity = 0.5f;
 
     
-
+    void Awake()
+    {
+        if (_instance != null && _instance != this) Destroy(this.gameObject);
+        else _instance = this; 
+    }
 
     void Start()
     {
