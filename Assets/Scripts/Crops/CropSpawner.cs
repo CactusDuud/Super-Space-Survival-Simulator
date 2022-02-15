@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CropSpawner : MonoBehaviour
 {
@@ -24,10 +25,9 @@ public class CropSpawner : MonoBehaviour
 
     [Header("Placement")]
     [SerializeField] private Grid _gridLayout;
+    [SerializeField] private Tilemap _soilMap;
     [SerializeField] private float elevation = -0.25f;
 
-    private Vector3 _placement;
-    private bool _onSoil = false;
     private bool _isplanted = false;
     
 
@@ -36,7 +36,18 @@ public class CropSpawner : MonoBehaviour
     //this function gets a string type that lets the function know which plant too instantiate
     public void CreatePlant(plantType plantIndex)
     {
-        if (_onSoil && !_isplanted) 
+        Debug.Log(_isplanted);
+        Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
+        if (_soilMap.HasTile(_gridLayout.WorldToCell(transform.position)) && !_isplanted) 
+        {
+            Debug.Log("Planted a crop");
+            Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
+            centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
+
+            GameObject _newCrop = Instantiate(_plants[(int)plantIndex], centerCell, Quaternion.identity, _cropParent);
+            CropManager.GetInstance.AddCrop(_newCrop);
+        }
+        /*if (_onSoil && !_isplanted) 
         {
             Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
             Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
@@ -44,7 +55,7 @@ public class CropSpawner : MonoBehaviour
             
             GameObject _newCrop = Instantiate(_plants[(int)plantIndex], centerCell, Quaternion.identity, _cropParent);
             CropManager.GetInstance.AddCrop(_newCrop);
-        }
+        }*/
         //position of crops is now good too go
 
         /*if (_onSoil)
@@ -64,29 +75,19 @@ public class CropSpawner : MonoBehaviour
     //this function will basically looking at what the player collided with and turn true if they collided with soil/plant
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("CropTag")) 
+        if (other.gameObject.CompareTag("CropTag") && !_isplanted) 
         {
-            Debug.Log("plant tile enter");
             _isplanted = true;
         }
-        if (other.gameObject.CompareTag("Soil Tag")) 
-        {
-            _onSoil = true;
-        }  
     }
 
 
     //this function will basically looking at what the player collided with and turn false if they collided with soil/plant
     void OnTriggerExit2D(Collider2D other) 
     {
-        if (other.gameObject.CompareTag("CropTag"))
+        if (other.gameObject.CompareTag("CropTag") && _isplanted)
         {
-            Debug.Log("plant tile exit");
             _isplanted = false;
-        }
-        if (other.gameObject.CompareTag("Soil Tag"))
-        {
-            _onSoil = false;
         }
     }
 
