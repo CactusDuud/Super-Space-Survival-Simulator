@@ -23,11 +23,13 @@ public class CropSpawner : MonoBehaviour
 
     [SerializeField] private Transform _cropParent;
 
+    //these variables help with the placement of the crops in soil tiles
     [Header("Placement")]
     [SerializeField] private Grid _gridLayout;
     [SerializeField] private Tilemap _soilMap;
     [SerializeField] private float elevation = -0.25f;
 
+    //bool that indicates if a plant is already in the place you want too plant
     private bool _isplanted = false;
     
 
@@ -36,7 +38,6 @@ public class CropSpawner : MonoBehaviour
     //this function gets a string type that lets the function know which plant too instantiate
     public void CreatePlant(plantType plantIndex)
     {
-        Debug.Log(_isplanted);
         Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
         if (_soilMap.HasTile(_gridLayout.WorldToCell(transform.position)) && !_isplanted) 
         {
@@ -47,32 +48,10 @@ public class CropSpawner : MonoBehaviour
             GameObject _newCrop = Instantiate(_plants[(int)plantIndex], centerCell, Quaternion.identity, _cropParent);
             CropManager.GetInstance.AddCrop(_newCrop);
         }
-        /*if (_onSoil && !_isplanted) 
-        {
-            Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
-            Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
-            centerCell = new Vector3(centerCell.x, centerCell.y + elevation, centerCell.z);
-            
-            GameObject _newCrop = Instantiate(_plants[(int)plantIndex], centerCell, Quaternion.identity, _cropParent);
-            CropManager.GetInstance.AddCrop(_newCrop);
-        }*/
-        //position of crops is now good too go
-
-        /*if (_onSoil)
-        {
-            _placement = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
-            if (plantType == "potato")
-            {
-                Debug.Log("potato enemy!!!");
-                Instantiate(_plant1, _placement, Quaternion.identity, _cropParent);
-            }
-        }*/
-
-
     }
     
 
-    //this function will basically looking at what the player collided with and turn true if they collided with soil/plant
+    //this function will basically looking at what the player collided with and turn true if they collided with plant
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("CropTag") && !_isplanted) 
@@ -81,8 +60,17 @@ public class CropSpawner : MonoBehaviour
         }
     }
 
+    //this function will basically check if player is still within a plant collider
+    void OnTriggerStay2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("CropTag") && !_isplanted)
+        {
+            _isplanted = true;
+        }
+    }
 
-    //this function will basically looking at what the player collided with and turn false if they collided with soil/plant
+
+    //this function will basically looking at what the player collided with and turn false if they collided with plant
     void OnTriggerExit2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("CropTag") && _isplanted)
