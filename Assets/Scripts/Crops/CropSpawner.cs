@@ -2,8 +2,6 @@
 
 //the only job this script has is too create crops
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
