@@ -1,4 +1,4 @@
-// Written by Sage Mahmud and ELizabeth Castreje
+// Written by Sage Mahmud and ELizabeth Castreje and Miguel Aleman
 
 
 using System.Collections;
@@ -7,18 +7,25 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    // Start is called before the first frame update
 
-    /*[HideInInspector]*/ public Transform[] m_Targets;
-
+    private GameObject[] m_Targets;
+    private float m_ScreenEdgeBuffer = 3f;           // Space between the top/bottom most target and the screen edge.
+    private float m_MinSize = 5f;                    // The smallest orthographic size the camera can be.
     private Camera m_Camera;
-    private float m_ZoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
-    private Vector2 m_MoveVelocity;                 // Reference velocity for the smooth damping of the position.
-    private Vector2 m_DesiredPosition;
+    private Vector3 m_DesiredPosition;
+                                                     // we are going to try to do damping in Cinemachine, but to be determined
 
     private void Awake()
     {
         m_Camera = GetComponentInChildren<Camera>(); 
+    }
+    
+    void Start()
+    {
+        // adding every object with this player tag into the m_Targets list/array/group thingy
+
+        m_Targets = GameObject.FindGameObjectsWithTag("PlayerTag");
+
     }
 
 
@@ -27,26 +34,26 @@ public class CameraControl : MonoBehaviour
         // Move the camera towards a desired position.
         Move();
 
-        // Change the size of the camera based.
+        // Change the size of the camera to keep both players in frame.
         Zoom();
     }
 
     private void Move()
     {
         // Find the average position of the targets.
-        FindAveragePosition();
+        m_DesiredPosition = FindAveragePosition();
+        transform.position = m_DesiredPosition;
+
     }
 
-    private void FindAveragePosition()
+    private Vector3 FindAveragePosition()
     {
-        Vector2 averagePos = new Vector2();
-
-        // if we want to in the future we can set target by other means 
+        Vector3 averagePos = new Vector3();
 
         for (int i = 0; i < m_Targets.Length; i++)
         {
             // Add to the average and increment the number of targets in the average.
-            averagePos += m_Targets[i].position;
+            averagePos += m_Targets[i].transform.position;
         }
 
         // If there are targets divide the sum of the positions by the number of them to find the average.
@@ -55,31 +62,56 @@ public class CameraControl : MonoBehaviour
             averagePos /= m_Targets.Length;
         }
 
-        // Keep the same y value.
+        // Keep the same z value.
         averagePos.z = transform.position.z;
 
         // The desired position is the average position;
-        m_DesiredPosition = averagePos;
+        return averagePos;
     }
 
-
-
-
-
-
-    void Start()
+    private void Zoom()
     {
-        
+        // Find the required size based on the desired position and smoothly transition to that size.
+        m_Camera.orthographicSize = FindRequiredSize();
+
     }
 
-    // Update is called once per frame
+    private float FindRequiredSize()
+    {
+        // Find the position the camera rig is moving towards in its local space.
+        Vector3 desiredLocalPos = transform.InverseTransformPoint(m_DesiredPosition);
+
+        // Start the camera's size calculation at zero.
+        float size = 0f;
+
+        // Go through all the targets...
+        for (int i = 0; i < m_Targets.Length; i++)
+        {
+        
+            // Otherwise, find the position of the target in the camera's local space.
+            Vector3 targetLocalPos = transform.InverseTransformPoint(m_Targets[i].transform.position);
+
+            // Find the position of the target from the desired position of the camera's local space.
+            Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
+
+            // Choose the largest out of the current size and the distance of the tank 'up' or 'down' from the camera.
+            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
+
+            // Choose the largest out of the current size and the calculated size based on the tank being to the left or right of the camera.
+            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x) / m_Camera.aspect);
+        }
+
+        // Add the edge buffer to the size.
+        size += m_ScreenEdgeBuffer;
+
+        // Make sure the camera's size isn't below the minimum.
+        size = Mathf.Max(size, m_MinSize);
+
+        return size;
+    }
+
     void Update()
     {
         
     }
 }
-
-
-// have camerarig identify if number of targets (players)
-// moves to average between the targets
-// scale camera to distance between targets

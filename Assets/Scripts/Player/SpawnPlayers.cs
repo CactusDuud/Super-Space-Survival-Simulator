@@ -1,3 +1,5 @@
+//  written by Sage Mahmud and Elizabeth Castreje
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +11,7 @@ public class SpawnPlayers : MonoBehaviour
     
     
 
-    void Start()
+    void Awake()
     {
         // Spawn player 1
         var p1 = PlayerInput.Instantiate(_pf_player1, controlScheme: "Player1", pairWithDevice: Keyboard.current);
