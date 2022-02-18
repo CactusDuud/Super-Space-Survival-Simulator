@@ -18239,5 +18239,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7423872020912630881, guid: 18f910a9e944ef543a4a154212b0faf6, type: 3}
+      propertyPath: _soilMap
+      value: 
+      objectReference: {fileID: 914460803}
+    - target: {fileID: 7423872020912630881, guid: 18f910a9e944ef543a4a154212b0faf6, type: 3}
+      propertyPath: _cropParent
+      value: 
+      objectReference: {fileID: 313540417}
+    - target: {fileID: 7423872020912630881, guid: 18f910a9e944ef543a4a154212b0faf6, type: 3}
+      propertyPath: _gridLayout
+      value: 
+      objectReference: {fileID: 270633219}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f910a9e944ef543a4a154212b0faf6, type: 3}

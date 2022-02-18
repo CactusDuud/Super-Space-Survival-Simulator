@@ -19,22 +19,29 @@ public class CropSpawner : MonoBehaviour
         moonflower
     }
 
-    [SerializeField] private Transform _cropParent;
+    private Transform _cropParent;
 
     //these variables help with the placement of the crops in soil tiles
-    [Header("Placement")]
-    [SerializeField] private Grid _gridLayout;
-    [SerializeField] private Tilemap _soilMap;
+    [Header("Crop Placement")]
+    private Grid _gridLayout;
+    private Tilemap _soilMap;
     [SerializeField] private float elevation = -0.25f;
 
     //bool that indicates if a plant is already in the place you want too plant
     private bool _isplanted = false;
-    
+
+    void Awake()
+    {
+        _cropParent = GameObject.Find("Crops").transform;
+        _gridLayout = GameObject.Find("World/Grid").GetComponent<Grid>();
+        _soilMap = GameObject.Find("World/Grid/Soil").GetComponent<Tilemap>();
 
 
+    }
 
-    //this function gets a string type that lets the function know which plant too instantiate
-    public void CreatePlant(plantType plantIndex)
+
+        //this function gets a string type that lets the function know which plant too instantiate
+        public void CreatePlant(plantType plantIndex)
     {
         Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
         if (_soilMap.HasTile(_gridLayout.WorldToCell(transform.position)) && !_isplanted) 
