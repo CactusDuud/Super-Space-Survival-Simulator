@@ -30,11 +30,46 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx) { _movementDirection = ctx.ReadValue<Vector2>(); }
     public void OnUseTool(InputAction.CallbackContext ctx) { _currentTool.UseTool(); }
     public void OnPauseMenu(InputAction.CallbackContext ctx) { PauseMenu.GetInstance.TogglePause(); }
-    public void OnPlantCrop1(InputAction.CallbackContext ctx) { _cropSpawner.CreatePlant(CropSpawner.plantType.potato); }
-    public void OnPlantCrop2(InputAction.CallbackContext ctx) { _cropSpawner.CreatePlant(CropSpawner.plantType.carrot); }
-    public void OnPlantCrop3(InputAction.CallbackContext ctx) { _cropSpawner.CreatePlant(CropSpawner.plantType.beet); }
-    public void OnPlantCrop4(InputAction.CallbackContext ctx) { _cropSpawner.CreatePlant(CropSpawner.plantType.sunflower); }
-    public void OnPlantCrop5(InputAction.CallbackContext ctx) { _cropSpawner.CreatePlant(CropSpawner.plantType.moonflower); }
+    public void OnPlantCrop1(InputAction.CallbackContext ctx) 
+    {
+        //InputAction.CallbackContext has three phases
+        //  start
+        //  performed
+        //  cancelled
+        //so we are just calling CropSpawner functions in started phase
+        if (ctx.started == true)
+        {
+            _cropSpawner.CreatePlant(CropSpawner.plantType.potato);
+        }
+    }
+    public void OnPlantCrop2(InputAction.CallbackContext ctx) 
+    {
+        if (ctx.started == true)
+        {
+            _cropSpawner.CreatePlant(CropSpawner.plantType.carrot);
+        }
+    }
+    public void OnPlantCrop3(InputAction.CallbackContext ctx) 
+    {
+        if (ctx.started == true)
+        {
+            _cropSpawner.CreatePlant(CropSpawner.plantType.beet);
+        }
+    }
+    public void OnPlantCrop4(InputAction.CallbackContext ctx) 
+    {
+        if (ctx.started == true)
+        {
+            _cropSpawner.CreatePlant(CropSpawner.plantType.sunflower);
+        }
+    }
+    public void OnPlantCrop5(InputAction.CallbackContext ctx) 
+    {
+        if (ctx.started == true)
+        {
+            _cropSpawner.CreatePlant(CropSpawner.plantType.moonflower);
+        }
+    }
 
     void FixedUpdate()
     {
