@@ -11,7 +11,7 @@ public class TimeManager : MonoBehaviour
 
     [Header("Time Variables")]
     [Tooltip("Length of a day/night in seconds")]
-    [SerializeField] int _dayLength = 180;
+    [SerializeField] public static int _dayLength = 180;
     [SerializeField] float _clockTime = 0;
 
     [Header("Light Variables")]

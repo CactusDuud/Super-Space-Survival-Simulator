@@ -48,6 +48,10 @@ public class PlayerTool : MonoBehaviour
 
     public void UseTool()
     {
+        if (PauseMenu.GamePaused == true)
+        {
+            return;
+        }
         if (_isUsingTool == false)
         {
             _isUsingTool = true;
@@ -55,6 +59,7 @@ public class PlayerTool : MonoBehaviour
             _effectArea.enabled = true;
             _effectSprite.enabled = true;
         }
+
     }
 
     public bool IsUsingTool()
