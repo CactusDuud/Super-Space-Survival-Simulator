@@ -78,5 +78,11 @@ public class PauseMenu : MonoBehaviour
         Resume();
         SceneManager.LoadScene(0);
     }
-   
+
+    //this function will open the Help Menu UI
+    public void Help()
+    {
+        HelpMenu.OpenHelpMenu();
+    }
+
 }

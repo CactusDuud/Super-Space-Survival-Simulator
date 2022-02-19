@@ -1,5 +1,8 @@
 //written by Miguel Aleman, Elizabeth Castreje
 
+//this script is used to manage the visual cue that time is passing (the slider at the top of the UI)
+// it references variables from TimeManager
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -327,7 +327,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Player1;Player2",
                     "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false

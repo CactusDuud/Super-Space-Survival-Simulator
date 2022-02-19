@@ -1,3 +1,7 @@
+//written by Miguel Aleman, Elizabeth Castreje
+
+// this script controls the button response to make the help information UI pop up
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,25 +11,36 @@ public class HelpMenu : MonoBehaviour
 
 {
     [Header("Singleton Insurance")]
-    private static PauseMenu _instance;
-    public static PauseMenu GetInstance { get { return _instance; } }
+    private static HelpMenu _instance;
+    public static HelpMenu GetInstance { get { return _instance; } }
 
-    public GameObject HelpUI;
+    public static bool HelpOpen = false;
 
-    void Start()
-    {
-        //PauseMenu.TogglePause();
-    }
+    public static GameObject HelpUI;
+
+    //void Start()
+    //{
+    //    //PauseMenu.TogglePause();
+    //}
 
     void Awake()
     {
-        //if (_instance != null && _instance != this) Destroy(this.gameObject);
-        //else _instance = this;
+        if (_instance != null && _instance != this) Destroy(this.gameObject);
+        else _instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    public static void CloseHelpMenu()
     {
-        
+        HelpUI.SetActive(false);
+
+
+    }
+
+    public static void OpenHelpMenu()
+    {
+        HelpUI.SetActive(true);
+
     }
 }
