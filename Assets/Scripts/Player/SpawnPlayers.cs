@@ -8,7 +8,7 @@ public class SpawnPlayers : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject _pf_player1;
     [SerializeField] GameObject _pf_player2;
-    
+
     
 
     void Awake()

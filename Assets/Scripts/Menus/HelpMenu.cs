@@ -16,7 +16,7 @@ public class HelpMenu : MonoBehaviour
 
     public static bool HelpOpen = false;
 
-    public static GameObject HelpUI;
+    public GameObject HelpUI;
 
     //void Start()
     //{
@@ -33,14 +33,14 @@ public class HelpMenu : MonoBehaviour
 
     public static void CloseHelpMenu()
     {
-        HelpUI.SetActive(false);
+        //HelpUI.SetActive(false);
 
 
     }
 
     public static void OpenHelpMenu()
     {
-        HelpUI.SetActive(true);
+        //HelpUI.SetActive(true);
 
     }
 }
