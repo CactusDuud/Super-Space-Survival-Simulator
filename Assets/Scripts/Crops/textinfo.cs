@@ -1,3 +1,5 @@
+//Code written by Sebastian Carbajal, this is honestly kinda completely unused
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
