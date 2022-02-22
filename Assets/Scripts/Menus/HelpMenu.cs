@@ -14,14 +14,12 @@ public class HelpMenu : MonoBehaviour
     private static HelpMenu _instance;
     public static HelpMenu GetInstance { get { return _instance; } }
 
+    //help keep track of when the help menu is open or closed
     public static bool HelpOpen = false;
 
+    //this will help us be able to hide the game object from the player later in code with SetActive
     public GameObject HelpUI;
 
-    //void Start()
-    //{
-    //    //PauseMenu.TogglePause();
-    //}
 
     void Awake()
     {
@@ -30,10 +28,26 @@ public class HelpMenu : MonoBehaviour
     }
 
 
+    public void ToggleHelp()
+    {
+        if (HelpOpen)
+        {
+            CloseHelpMenu();
+        }
+        else
+        {
+            OpenHelpMenu();
+        }
+    }
+
+
+    // TEAM NOTES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // we currently do not have this menu shown as it is not funcitoning as intended, problematic code is commented out and the button is inactive in unity 
 
     public static void CloseHelpMenu()
     {
         //HelpUI.SetActive(false);
+        HelpOpen = false;
 
 
     }
@@ -41,6 +55,8 @@ public class HelpMenu : MonoBehaviour
     public static void OpenHelpMenu()
     {
         //HelpUI.SetActive(true);
+        Debug.Log("this is working");
+        HelpOpen = true;
 
     }
 }
