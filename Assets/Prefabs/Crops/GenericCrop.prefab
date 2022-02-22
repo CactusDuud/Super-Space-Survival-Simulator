@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6989399462569418418}
   - component: {fileID: 6989399462569418419}
   - component: {fileID: 103113263825216035}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GenericCrop
   m_TagString: CropTag
   m_Icon: {fileID: 0}
@@ -181,6 +181,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6989399462569418416}
     m_Modifications:
+    - target: {fileID: 4347722682280407774, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4347722682578858386, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -212,6 +216,10 @@ PrefabInstance:
     - target: {fileID: 4347722682578858386, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347722682578858387, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4347722682739157775, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
       propertyPath: m_Pivot.x
@@ -309,6 +317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 4347722682739157779, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4347722683957565103, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -316,6 +328,10 @@ PrefabInstance:
     - target: {fileID: 4347722683957565103, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347722683957565104, guid: 05b518688a71c9b48a213e50353cef21, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05b518688a71c9b48a213e50353cef21, type: 3}

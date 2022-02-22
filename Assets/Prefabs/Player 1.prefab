@@ -415,9 +415,6 @@ MonoBehaviour:
   - {fileID: 7696051500774780518, guid: 8aac482ac091bbe4f91837d39d4a530c, type: 3}
   - {fileID: 3035392522817852122, guid: 2358899f6b8bdfc40974c58c6845dd2d, type: 3}
   - {fileID: 1643491989424303908, guid: d8e2d7b00013b6340883302f0d88c8cb, type: 3}
-  _cropParent: {fileID: 0}
-  _gridLayout: {fileID: 0}
-  _soilMap: {fileID: 0}
   elevation: -0.25
 --- !u!1 &4772005441538842135
 GameObject:
