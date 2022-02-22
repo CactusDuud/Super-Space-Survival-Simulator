@@ -1,4 +1,4 @@
-// the code was written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman
+// the code was written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman, Sebastian Carbajal
 
 //the only job this script has is too create crops
 
