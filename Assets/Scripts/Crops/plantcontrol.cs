@@ -1,3 +1,5 @@
+//Code written by Sebastian Carbajal, some of this is redundant so might just flat out delete it
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
