@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Movement))]
-[RequireComponent(typeof(CropSpawner))]
 [RequireComponent(typeof(CharacterController))]
 [DisallowMultipleComponent]
 public class PlayerController : MonoBehaviour
@@ -21,7 +20,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         // Fetch components
-        _cropSpawner = GetComponent<CropSpawner>();
+        _cropSpawner = this.transform.GetChild(2).GetComponent<CropSpawner>();
         _movement = GetComponent<Movement>();
     }
 

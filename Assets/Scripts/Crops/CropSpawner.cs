@@ -36,7 +36,6 @@ public class CropSpawner : MonoBehaviour
         _gridLayout = GameObject.Find("World/Grid").GetComponent<Grid>();
         _soilMap = GameObject.Find("World/Grid/Soil").GetComponent<Tilemap>();
 
-
     }
 
 
