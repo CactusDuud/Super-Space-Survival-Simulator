@@ -129,6 +129,7 @@ MonoBehaviour:
   _deadSprite: {fileID: 0}
   growthDuration: 15
   _prosperityValue: 5
+  prosperityCost: 4
 --- !u!114 &103113263825216035
 MonoBehaviour:
   m_ObjectHideFlags: 0

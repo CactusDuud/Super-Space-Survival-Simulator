@@ -68,6 +68,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: prosperityCost
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: _prosperityValue
       value: 24
       objectReference: {fileID: 0}

@@ -18,6 +18,7 @@ public class Growth : MonoBehaviour
     [Header("Attributes")]
     public float growthDuration;
     [SerializeField] int _prosperityValue;
+    public int prosperityCost;
 
     [Header("Statistics")]
     float _growthTimer;
