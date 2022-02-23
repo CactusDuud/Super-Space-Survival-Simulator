@@ -15015,8 +15015,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -103.533554, y: 68.15814}
-  m_SizeDelta: {x: 38.4, y: 19.5}
+  m_AnchoredPosition: {x: -94.08, y: 56.6}
+  m_SizeDelta: {x: 64.09, y: 52.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699472927
 MonoBehaviour:
@@ -15062,19 +15062,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1804314657}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1428457274}
+      - m_Target: {fileID: 2008689895}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -15096,7 +15084,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &699472928
 MonoBehaviour:
@@ -20084,9 +20072,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "instructions of controls goes here\n\nand here\n\nand here\n\nbasically
-    all the info\n\ndont forget crop info too\n\noki \n\ni go now\n\ngood luck working
-    on this\n\nlmk if you get it to work \n\n<3 liz"
+  m_text: "Objective: \nsurvive as long as possible, farming crops to gain prosperity\n\n\nControls:\n\nPlayer
+    1: movement (W A S D)\n               crop planting (1 2 3 4 5)\n              
+    use scythe/attack (E)\n\nPlayer 2: movement (I J K L)\n               crop planting
+    (6 7 8 9 0)\n               use scythe/attack (U)\n\n\nCrop Information:\n\nsprout:
+    a young stage of your growing crop (no special properties)\npotato: your fastest
+    growing crop ... doesn't yield much\nbeet: a better potato, takes longer to grow
+    though\ncarrot: most durable plant! Takes its time to grow, but is strong!\nsunflower:
+    extremely delicate, but high reward!!\nmoonflower: still delicate, takes longer
+    to grow, but higher reward!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20129,7 +20123,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -20747,7 +20741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1601731639
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20823,6 +20817,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2008689895}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1601731641
 MonoBehaviour:

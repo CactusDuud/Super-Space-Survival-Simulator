@@ -41,12 +41,11 @@ public class HelpMenu : MonoBehaviour
     }
 
 
-    // TEAM NOTES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // we currently do not have this menu shown as it is not funcitoning as intended, problematic code is commented out and the button is inactive in unity 
+    // Troubleshooting with Esmeralda Juarez and Elizabeth Castreje
 
     public static void CloseHelpMenu()
     {
-        //HelpUI.SetActive(false);
+        //HelpUI.SetActive(false);       <-- NOT NEEDED, SETACTIVE  CHANGED INSIDE UNITY
         HelpOpen = false;
 
 
@@ -54,8 +53,8 @@ public class HelpMenu : MonoBehaviour
 
     public static void OpenHelpMenu()
     {
-        //HelpUI.SetActive(true);
-        Debug.Log("this is working");
+        //HelpUI.SetActive(true);         <-- NOT NEEDED, SETACTIVE  CHANGED INSIDE UNITY
+        //Debug.Log("this is working");
         HelpOpen = true;
 
     }
