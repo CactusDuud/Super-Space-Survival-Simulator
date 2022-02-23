@@ -3,30 +3,34 @@
 
 using UnityEngine;
 
-public class SkittishAI : TargetingAI
+public class ChargingAI : TargetingAI
 {
     [Header("References")]
-    Transform _fleeTarget;
+    Transform _chargeTarget;
 
     [Header("Attributes")]
-    [SerializeField] float _fleeDistance = 5f;
-    [SerializeField] float _fleeSpeedFactor = 1.5f;
-    [SerializeField] float _fleeDuration = 1f;
+    [SerializeField] float _chargeDistance = 25f;
+    [SerializeField] float _chargeSpeedFactor = 1.5f;
+    [SerializeField] float _chargeDuration = 1f;
+    [SerializeField] float _chargeCooldownDuration = 5f;
 
     [Header("Statistics")]
-    float _fleeTimer;
+    [SerializeField] float _chargeTime;
+    [SerializeField] float _chargeCooldownTimer;
 
     protected override void Awake()
     {
         base.Awake();
 
-        _fleeTarget = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
+        _chargeTarget = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Transform>();
     }
 
     protected override void FixedUpdate()
     {
-        if (_fleeTimer <= 0 && FindEnemyDistance() <= _fleeDistance) _fleeTimer = _fleeDuration;
-        FleeBehaviourClock();
+        if (_chargeTime <= 0 && _chargeCooldownTimer <= 0 && FindEnemyDistance() <= _chargeDistance) _chargeTime = _chargeDuration;
+        ChargeBehaviourClock();
+        if (_chargeTime <= 0 && _chargeCooldownTimer <= 0) _chargeCooldownTimer = _chargeCooldownDuration;
+        ChargeCooldownClock();
 
         base.FixedUpdate();
     }
@@ -35,10 +39,10 @@ public class SkittishAI : TargetingAI
     {
         if (_target != null)
         {
-            if (_fleeTimer > 0)
+            if (_chargeTime > 0)
             {
-                _movement.speed = _baseSpeed * _fleeSpeedFactor;
-                return transform.position - _fleeTarget.position;
+                _movement.speed = _baseSpeed * _chargeSpeedFactor;
+                return _chargeTarget.position - transform.position;
             }
             else
             {
@@ -67,20 +71,25 @@ public class SkittishAI : TargetingAI
         return _distance;
     }
 
-    void FleeBehaviourClock()
+    void ChargeBehaviourClock()
     {
-        if (_fleeTimer > 0) _fleeTimer -= Time.deltaTime;
+        if (_chargeTime > 0) _chargeTime -= Time.deltaTime;
+    }
+
+    void ChargeCooldownClock()
+    {
+        if (_chargeCooldownTimer > 0) _chargeCooldownTimer -= Time.deltaTime;
     }
 
     protected override void DaySlow()
     {
-        if (_fleeTimer > 0) _movement.speed = _baseSpeed * _fleeSpeedFactor * _daySpeedPenalty;
+        if (_chargeTime > 0) _movement.speed = _baseSpeed * _chargeSpeedFactor * _daySpeedPenalty;
         else _movement.speed = _baseSpeed * _daySpeedPenalty;
     }
 
     protected override void NightUnslow()
     {
-        if (_fleeTimer > 0) _movement.speed = _baseSpeed * _fleeSpeedFactor;
+        if (_chargeTime > 0) _movement.speed = _baseSpeed * _chargeSpeedFactor;
         else _movement.speed = _baseSpeed;
     }
 }

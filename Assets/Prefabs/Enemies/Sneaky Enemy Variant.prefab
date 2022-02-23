@@ -88,10 +88,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5305638349223632714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a50b42b237408d4bafd751bc7c200f0, type: 3}
+  m_Script: {fileID: 11500000, guid: b3afa456dbbf6044b834602cf4a68fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
+  _daySpeedPenalty: 0.5
   _nextWaypointDistance: 0.1
   _pathUpdateRate: 0.5
   _stoppingDistance: 1

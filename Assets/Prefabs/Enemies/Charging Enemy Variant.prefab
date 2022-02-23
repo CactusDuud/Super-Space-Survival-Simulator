@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: fca0627ccc4d2bd4ba2bbe812b1a5597, type: 3}
     - target: {fileID: 3278018468030546637, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: speed
-      value: 225
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5110476712828936711, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: _reach
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5824646172893007975, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_Sprite
@@ -30,14 +30,6 @@ PrefabInstance:
     - target: {fileID: 6794084343605076642, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6794084343605076642, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6794084343605076642, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6794084343605076642, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79,13 +71,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7410153102042337524, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410153102042337524, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7820783061087561638, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: _maxHealth
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8479432071229173366, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
       propertyPath: m_Name
-      value: Speedy Enemy Variant
+      value: Charging Enemy Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 574073217985960277, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+--- !u!1 &6977783818056674426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8479432071229173366, guid: 07416647af3cbb3459591bb3ebbc2b30, type: 3}
+  m_PrefabInstance: {fileID: 1547813181602644492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-7515379645809850801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6977783818056674426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436e145b42eb6a41a76e8a451ca2c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _daySpeedPenalty: 0.5
+  _nextWaypointDistance: 0.1
+  _pathUpdateRate: 0.5
+  _stoppingDistance: 1
+  _chargeDistance: 25
+  _chargeSpeedFactor: 5
+  _chargeDuration: 2
+  _chargeCooldownDuration: 5
+  _chargeTime: 0
+  _chargeCooldownTimer: 0
