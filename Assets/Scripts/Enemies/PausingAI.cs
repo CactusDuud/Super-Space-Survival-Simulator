@@ -1,11 +1,11 @@
 // Written by Sage Mahmud
 
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class SneakyAI : TargetingAI
+public class PausingAI : TargetingAI
 {
+    //TODO: Change image when stopped
     [Header("Attributes")]
     [SerializeField] float _walkDuration = 4;
     [SerializeField] float _hideDuration = 3;
