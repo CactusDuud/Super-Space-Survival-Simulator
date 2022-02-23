@@ -198,7 +198,7 @@ MonoBehaviour:
   _daySpeedPenalty: 0.5
   _nextWaypointDistance: 0.1
   _pathUpdateRate: 0.5
-  _stoppingDistance: 1.8
+  _stoppingDistance: 1
 --- !u!114 &7820783061087561638
 MonoBehaviour:
   m_ObjectHideFlags: 0

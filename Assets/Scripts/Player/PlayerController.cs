@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         // Fetch components
-        _cropSpawner = this.transform.GetChild(2).GetComponent<CropSpawner>();
+        _cropSpawner = transform.GetChild(2).GetComponent<CropSpawner>();
         _movement = GetComponent<Movement>();
     }
 

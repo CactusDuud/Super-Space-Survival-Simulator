@@ -33,20 +33,16 @@ public class SkittishAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_target != null)
+        if (_fleeTimer > 0)
         {
-            if (_fleeTimer > 0)
-            {
-                _movement.speed = _baseSpeed * _fleeSpeedFactor;
-                return transform.position - _fleeTarget.position;
-            }
-            else
-            {
-                _movement.speed = _baseSpeed;
-                return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
-            }
+            _movement.speed = _baseSpeed * _fleeSpeedFactor;
+            return transform.position - _fleeTarget.position;
         }
-        else return Vector2.zero;
+        else
+        {
+            _movement.speed = _baseSpeed;
+            return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
+        }
     }
 
     float FindEnemyDistance()

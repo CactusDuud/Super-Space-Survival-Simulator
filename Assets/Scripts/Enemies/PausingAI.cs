@@ -7,8 +7,8 @@ public class PausingAI : TargetingAI
 {
     //TODO: Change image when stopped
     [Header("Attributes")]
-    [SerializeField] float _walkDuration = 4;
-    [SerializeField] float _hideDuration = 3;
+    [SerializeField] float _walkDuration = 4f;
+    [SerializeField] float _hideDuration = 3f;
 
     [Header("Statistics")]
     float _hideTimer;
@@ -30,23 +30,13 @@ public class PausingAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_target != null)
-        {
-            if (_isHiding)
-            {
-                return Vector2.zero;
-            }
-            else
-            {
-                return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
-            }
-        }
-        else return Vector2.zero;
+        if (_isHiding) return Vector2.zero;
+        else return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
     }
 
     void HideBehaviourClock()
     {
-        _hideTimer -= Time.deltaTime;
+        if (_hideTimer > 0) _hideTimer -= Time.deltaTime;
         if (_hideTimer <= 0)
         {
             if (_isHiding)
