@@ -1,7 +1,5 @@
 //Code written by Sage Mahmud & Sebastian Carbajal
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -26,7 +24,7 @@ public class Growth : MonoBehaviour
     bool _isWithered;
     bool _isHarvestable;
 
-    void Awake()
+    protected virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _growingSprite;
@@ -34,13 +32,13 @@ public class Growth : MonoBehaviour
         _health= GetComponent<Health>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         GameManager.GetInstance.OnDaytime += EnableGrowth;
         GameManager.GetInstance.OnNighttime += DisableGrowth;
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!_health.Alive()) Wither();
         GrowClock();
@@ -56,7 +54,7 @@ public class Growth : MonoBehaviour
         _canGrow = false;
     }
 
-    void GrowClock()
+    protected virtual void GrowClock()
     {
         if (!_isWithered)
         {
@@ -72,7 +70,7 @@ public class Growth : MonoBehaviour
         }
     }
 
-    void Wither()
+    protected virtual void Wither()
     {
         if (!_isWithered)
         {
@@ -84,7 +82,7 @@ public class Growth : MonoBehaviour
         }
     }
 
-    public void Harvest()
+    public virtual void Harvest()
     {
         if (_isHarvestable)
         {
