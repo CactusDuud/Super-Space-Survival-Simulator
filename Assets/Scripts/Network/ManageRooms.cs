@@ -23,6 +23,6 @@ public class ManageRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         // Load the proper scene
-        PhotonNetwork.LoadLevel("SuperSpaceSurvivalSimulator");
+        PhotonNetwork.LoadLevel("SuperSpaceSurvivalSimulatorOnline");
     }
 }
