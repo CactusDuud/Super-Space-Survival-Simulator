@@ -1,27 +1,28 @@
 // Written by Sage Mahmud
 
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using Photon.Pun;
 
 public class ManageRooms : MonoBehaviourPunCallbacks
 {
-    public InputField newRoom;
-    public InputField joinRoom;
+    [SerializeField] TMP_InputField _roomName;
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(newRoom.text);
+        PhotonNetwork.CreateRoom(_roomName.text);
+        Debug.Log($"Created room \"{_roomName.text}\"");
     }
 
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(joinRoom.text);
+        PhotonNetwork.JoinRoom(_roomName.text);
+        Debug.Log($"Joined room \"{_roomName.text}\"");
     }
 
     public override void OnJoinedRoom()
     {
         // Load the proper scene
-        //PhotonNetwork.LoadLevel("");
+        PhotonNetwork.LoadLevel("SuperSpaceSurvivalSimulator");
     }
 }
