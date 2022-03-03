@@ -1,6 +1,6 @@
 // the code was written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman, Sebastian Carbajal
 
-//the only job this script has is too create crops
+//the only job this script has is to create crops
 
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -39,8 +39,8 @@ public class CropSpawner : MonoBehaviour
     }
 
 
-        //this function gets a string type that lets the function know which plant too instantiate
-        public void CreatePlant(plantType plantIndex)
+    //this function gets a string type that lets the function know which plant too instantiate
+    public void CreatePlant(plantType plantIndex)
     {
         Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
         if (_soilMap.HasTile(_gridLayout.WorldToCell(transform.position)) && !_isplanted) 

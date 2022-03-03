@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: watered_soil
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 968e21643be5a9743acaa215beed85d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
   m_Transform:
     e00: 1
     e01: 0
