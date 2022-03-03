@@ -94,13 +94,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [PunRPC] public void AddProsperity(int amount)
+    public void AddProsperity(int amount)
     {
         prosperity += amount;
         prosperityText.text = $"Prosperity: {prosperity}";
     }
 
-    [PunRPC] public void SubtractProsperity(int amount)
+    public void SubtractProsperity(int amount)
     {
         prosperity -= amount;
         prosperityText.text = $"Prosperity: {prosperity}";

@@ -17,7 +17,7 @@ public class SpawnPlayers : MonoBehaviour
     [SerializeField] Transform _player2Spawn;
 
     [Header("Attributes")]
-    [SerializeField] bool _isOnline;
+    public bool _isOnline;
     bool _p1Exists;
 
     
