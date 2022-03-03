@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 [RequireComponent(typeof(TimeManager))]
 public class GameManager : MonoBehaviour
