@@ -18967,8 +18967,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 115, y: -36}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 86.58905, y: -36}
+  m_SizeDelta: {x: 143.18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034805277
 MonoBehaviour:
@@ -21279,7 +21279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -35.1092, y: -26.739502}
+  m_AnchoredPosition: {x: -101, y: -32}
   m_SizeDelta: {x: 157.7816, y: 21.4789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859456388
@@ -22086,7 +22086,7 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 2
+  observableSearch: 1
   ObservedComponents: []
   sceneViewId: 1
   InstantiationId: 0

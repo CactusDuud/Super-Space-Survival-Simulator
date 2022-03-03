@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 [RequireComponent(typeof(TimeManager))]
 public class GameManager : MonoBehaviour
@@ -93,13 +94,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddProsperity(int amount)
+    [PunRPC] public void AddProsperity(int amount)
     {
         prosperity += amount;
         prosperityText.text = $"Prosperity: {prosperity}";
     }
 
-    public void SubtractProsperity(int amount)
+    [PunRPC] public void SubtractProsperity(int amount)
     {
         prosperity -= amount;
         prosperityText.text = $"Prosperity: {prosperity}";
