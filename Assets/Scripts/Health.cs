@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
     [Header("Attributes")]
     public bool doSelfCull;
     [SerializeField] int _maxHealth;
-    int _health;
+    public int _health;
 
     //when first awaken the health is at max health
     void Awake()
