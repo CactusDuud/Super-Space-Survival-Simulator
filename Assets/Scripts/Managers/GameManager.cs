@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
     private CropManager _cropManager;
 
     [Header("Score Variables")]
-    public static int prosperity;
-    public static int GetProsperity { get { return prosperity; } }
+    public int prosperity;
 
     [Header("Game UI")]
     [SerializeField] TextMeshProUGUI prosperityText;

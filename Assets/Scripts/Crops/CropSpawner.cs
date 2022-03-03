@@ -45,7 +45,7 @@ public class CropSpawner : MonoBehaviour
         Vector3Int tileCellPos = _gridLayout.WorldToCell(transform.position);
         if (_soilMap.HasTile(_gridLayout.WorldToCell(transform.position)) && !_isplanted) 
         {
-            if (GameManager.GetProsperity >= _plants[(int)plantIndex].GetComponent<Growth>().prosperityCost)
+            if (GameManager.GetInstance.prosperity >= _plants[(int)plantIndex].GetComponent<Growth>().prosperityCost)
             {
                 Debug.Log("Planted a crop");
                 Vector3 centerCell = _gridLayout.GetCellCenterWorld(tileCellPos);
