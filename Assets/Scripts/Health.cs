@@ -35,7 +35,8 @@ public class Health : MonoBehaviour
     {
         if (doSelfCull && _health <= 0)
         {
-            Debug.Log($"{this.name} has died");
+            Debug.Log($"{name} has died");
+            if(gameObject.CompareTag("EnemyTag")) SpawnManager.GetInstance.RemoveEnemy(gameObject);
             Destroy(gameObject);
         }
     }

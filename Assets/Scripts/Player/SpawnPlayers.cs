@@ -13,6 +13,7 @@ public class SpawnPlayers : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject _pf_player1;
     [SerializeField] GameObject _pf_player2;
+    [SerializeField] GameObject _pf_friend;
     [SerializeField] Transform _player1Spawn;
     [SerializeField] Transform _player2Spawn;
 
@@ -50,6 +51,9 @@ public class SpawnPlayers : MonoBehaviour
             // Spawn player 2
             var p2 = PlayerInput.Instantiate(_pf_player2, controlScheme: "Player2", pairWithDevice: Keyboard.current);
             p2.transform.position = _player2Spawn.position;
+
+            // Spawn an awesome friend
+            GameObject.Instantiate(_pf_friend, transform.position, Quaternion.identity);
         }
     }
 }

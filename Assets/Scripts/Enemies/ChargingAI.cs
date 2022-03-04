@@ -37,7 +37,7 @@ public class ChargingAI : TargetingAI
 
     protected override Vector2 DetermineDirection()
     {
-        if (_target != null)
+        if (_target != transform)
         {
             if (_chargeTime > 0)
             {

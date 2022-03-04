@@ -3,6 +3,7 @@
 using UnityEngine;
 using Pathfinding;
 
+[RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(Movement))]
 public class TargetingAI : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class TargetingAI : MonoBehaviour
     [Header("References")]
     protected Movement _movement;
     [SerializeField] protected Transform _target;
+    Seeker _seeker;
     protected float _baseSpeed;
 
     [Header("Attributes")]
@@ -19,11 +21,10 @@ public class TargetingAI : MonoBehaviour
 
     [Header("Pathfinding")]
     protected Path _path;
-    Seeker _seeker;
     protected int _currentWaypoint;
     [SerializeField] float _nextWaypointDistance = 0.1f;
     [SerializeField] float _pathUpdateRate = 0.5f;
-    [SerializeField] float _stoppingDistance = 1.0f;
+    [SerializeField] protected float _stoppingDistance = 1.0f;
 
     protected virtual void Awake()
     {
@@ -31,6 +32,7 @@ public class TargetingAI : MonoBehaviour
         _seeker= GetComponent<Seeker>();
 
         _baseSpeed = _movement.speed;
+        _target = transform;
     }
 
     void Start()
@@ -52,6 +54,8 @@ public class TargetingAI : MonoBehaviour
                 // Move towards our target if it's farther than the stopping distance
                 if (Vector2.Distance(_target.position, transform.position) > _stoppingDistance)
                     _movement.Move(DetermineDirection().normalized);
+                else
+                    _movement.Move(DetermineDirection());
 
                 // Check if we've successfully stepped towards the target
                 if (Vector2.Distance(transform.position, _path.vectorPath[_currentWaypoint]) <= _nextWaypointDistance)
@@ -84,19 +88,19 @@ public class TargetingAI : MonoBehaviour
         }
     }
 
-    protected void FindTarget()
+    protected virtual void FindTarget()
     {
         // Null case (find a new target)
-        if (_target == null)
+        if (_target == transform)
         {
             _target = CropManager.GetInstance.GetRandomCrop().transform;
 
-            if (_target == null)  _target = GameObject.FindGameObjectWithTag("PlayerTag").transform;
+            if (_target == transform)  _target = GameObject.FindGameObjectWithTag("PlayerTag").transform;
         }
         // Non-null case (check if the target is dead; if so, look for a new one)
         else if (_target.CompareTag("CropTag"))
         {
-            if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = null;
+            if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = transform;
         }
         
     }
