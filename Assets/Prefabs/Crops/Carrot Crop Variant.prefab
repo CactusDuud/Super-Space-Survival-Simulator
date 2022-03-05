@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: _maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4347722683522286114, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347722683522286114, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6989399462569418416, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -60,6 +68,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 195cc4c10c85b7c45abaaf1a90aa62ab, type: 3}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: _deadSprite
       value: 
       objectReference: {fileID: 21300000, guid: 306b48c95f9196f40bf9a097f729697d, type: 3}
@@ -102,4 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53529e210dae2046bfc0c15c4088855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _growingSprite: {fileID: 21300000, guid: 723b681168af0f443a8d71100c092a36, type: 3}
+  _harvestableSprite: {fileID: 21300000, guid: 195cc4c10c85b7c45abaaf1a90aa62ab, type: 3}
+  _deadSprite: {fileID: 21300000, guid: 306b48c95f9196f40bf9a097f729697d, type: 3}
+  growthDuration: 25
+  _prosperityValue: 7
+  prosperityCost: 5
   timeToProsper: 3
+  gainedProsperity: 1

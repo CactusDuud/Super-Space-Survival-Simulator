@@ -21,7 +21,7 @@ public class Growth : MonoBehaviour
     [Header("Statistics")]
     float _growthTimer;
     bool _canGrow;
-    bool _isWithered;
+    protected bool _isWithered;
     bool _isHarvestable;
 
     protected virtual void Awake()
