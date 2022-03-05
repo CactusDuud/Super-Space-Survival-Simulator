@@ -10,6 +10,7 @@ public class CropSpawner : MonoBehaviour
     //variables will help with instantiate prefabs and put them in the correct heirarchy
     [Header("References")]
     [SerializeField] private GameObject[] _plants;
+    [SerializeField] private Animator NoFunds;
     public enum plantType
     {
         potato,
@@ -54,6 +55,10 @@ public class CropSpawner : MonoBehaviour
                 GameObject _newCrop = Instantiate(_plants[(int)plantIndex], centerCell, Quaternion.identity, _cropParent);
                 GameManager.GetInstance.SubtractProsperity(_newCrop.GetComponent<Growth>().prosperityCost);
                 CropManager.GetInstance.AddCrop(_newCrop);
+            }
+            else
+            {
+                NoFunds.Play("No Funds_Anim");
             }
         }
     }
