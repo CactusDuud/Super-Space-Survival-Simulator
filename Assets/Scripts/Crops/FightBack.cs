@@ -54,6 +54,11 @@ public class FightBack : MonoBehaviour
             else if (_currentHealth._health == _prevHealth) // not being attacked
             {
                 _isAttacked = false;
+                if (!_isCooling)
+                {
+                    _isCooling = true;
+                    StartCoroutine(poisionAttack(0.5f));  /// currentely being called too fast -> need too cooldown on each attack (enemy taking really fast hits)
+                }
             }
             else if (_currentHealth._health > _prevHealth) //healing maybe
             {
