@@ -10,7 +10,7 @@ public class CropSpawner : MonoBehaviour
     //variables will help with instantiate prefabs and put them in the correct heirarchy
     [Header("References")]
     [SerializeField] private GameObject[] _plants;
-    [SerializeField] private Animator NoFunds;
+    private Animator NoFunds;
     public enum plantType
     {
         potato,
@@ -36,7 +36,7 @@ public class CropSpawner : MonoBehaviour
         _cropParent = GameObject.Find("Crops").transform;
         _gridLayout = GameObject.Find("World/Grid").GetComponent<Grid>();
         _soilMap = GameObject.Find("World/Grid/Soil").GetComponent<Tilemap>();
-
+        NoFunds = GameObject.Find("NoFundsPopup").GetComponent<Animator>();
     }
 
 
@@ -58,6 +58,7 @@ public class CropSpawner : MonoBehaviour
             }
             else
             {
+                //NoFunds.SetBool("NoFund", true);
                 NoFunds.Play("No Funds_Anim");
             }
         }

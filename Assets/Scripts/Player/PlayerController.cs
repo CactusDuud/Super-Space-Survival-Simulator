@@ -41,6 +41,16 @@ public class PlayerController : MonoBehaviour
             _cropSpawner.CreatePlant(CropSpawner.plantType.potato);
         }
     }
+
+    //change this to default after
+    //public void OnPlantCrop(InputAction.CallbackContext ctx, CropSpawner.plantType plant1)
+    //{
+    //   if (ctx.started == true)
+    //    {
+    //        _cropSpawner.CreatePlant(plant1);
+    //    }
+    //}
+
     public void OnPlantCrop2(InputAction.CallbackContext ctx) 
     {
         if (ctx.started == true)
