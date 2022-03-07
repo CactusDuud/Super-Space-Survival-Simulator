@@ -120,5 +120,5 @@ MonoBehaviour:
   growthDuration: 25
   _prosperityValue: 7
   prosperityCost: 5
-  timeToProsper: 3
+  timeToProsper: 10
   gainedProsperity: 1

@@ -52,10 +52,17 @@ public class TargetingAI : MonoBehaviour
             if (_currentWaypoint < _path.vectorPath.Count)
             {
                 // Move towards our target if it's farther than the stopping distance
-                if (Vector2.Distance(_target.position, transform.position) > _stoppingDistance)
-                    _movement.Move(DetermineDirection().normalized);
+                if (_target != null)
+                {
+                    if (Vector2.Distance(_target.position, transform.position) > _stoppingDistance)
+                        _movement.Move(DetermineDirection().normalized);
+                    else
+                        _movement.Move(DetermineDirection());
+                }
                 else
-                    _movement.Move(DetermineDirection());
+                {
+                    _target = transform;
+                }
 
                 // Check if we've successfully stepped towards the target
                 if (Vector2.Distance(transform.position, _path.vectorPath[_currentWaypoint]) <= _nextWaypointDistance)
@@ -95,7 +102,8 @@ public class TargetingAI : MonoBehaviour
         {
             _target = CropManager.GetInstance.GetRandomCrop().transform;
 
-            if (_target == transform)  _target = GameObject.FindGameObjectWithTag("PlayerTag").transform;
+            // Backup if there are no crops (target the player)
+            if (_target == null)  _target = GameObject.FindGameObjectWithTag("PlayerTag").transform;
         }
         // Non-null case (check if the target is dead; if so, look for a new one)
         else if (_target.CompareTag("CropTag"))

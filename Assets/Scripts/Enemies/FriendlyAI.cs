@@ -22,7 +22,7 @@ public class FriendlyAI : TargetingAI
     protected override void FindTarget()
     {
         // Null case (find a new target or wander)
-        if (_target == transform)
+        if (_target == transform || _target == null)
         {
             if (SpawnManager.GetInstance.IsLivingEnemies())
             {
@@ -30,7 +30,7 @@ public class FriendlyAI : TargetingAI
                 if (Vector2.Distance(transform.position, _target.position) <= _sightRange) _target = randomEnemy;
             }
 
-            if (_target == transform)
+            if (_target == transform || _target == null)
             {
                 _wanderPoint.position = transform.position;
                 Vector3 randomOffset = new Vector3(
