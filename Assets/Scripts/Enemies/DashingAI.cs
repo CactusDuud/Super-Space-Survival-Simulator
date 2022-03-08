@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// Written by Sage Mahmud
+
 using UnityEngine;
 
 public class DashingAI : TargetingAI

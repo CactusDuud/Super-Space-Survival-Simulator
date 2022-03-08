@@ -1,7 +1,5 @@
 // Written by Sage Mahmud
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,12 +19,14 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
+        // nyooooom
         _rigidbody.velocity = direction * speed * Time.deltaTime;
         Flip();
     }
     
     void Flip()
     {
+        // Flip the graphic to face the velocity direction
         Vector2 _newScale = _gfx.localScale;
         if (_rigidbody.velocity.x > 0)
             _newScale.x = -Mathf.Abs(_gfx.localScale.x);

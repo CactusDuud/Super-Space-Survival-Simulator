@@ -62,7 +62,7 @@ public class Health : MonoBehaviour
 
 
     //checks if gameobject's health is less than 0
-    public bool Alive()
+    public bool IsAlive()
     {
         return _health > 0;
     }

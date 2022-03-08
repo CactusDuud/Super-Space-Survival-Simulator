@@ -1,7 +1,5 @@
-// Written by Elizabeth Castreje and Sage Mahmud
+// Written by Sage Mahmud
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FriendlyAI : TargetingAI
@@ -21,15 +19,17 @@ public class FriendlyAI : TargetingAI
 
     protected override void FindTarget()
     {
-        // Null case (find a new target or wander)
+        // Null case
         if (_target == transform || _target == null)
         {
+            // If there are living enemies, pick a random one and move towards it if it's close enough
             if (SpawnManager.GetInstance.IsLivingEnemies())
             {
                 Transform randomEnemy = SpawnManager.GetInstance.GetRandomEnemy().transform;
                 if (Vector2.Distance(transform.position, _target.position) <= _sightRange) _target = randomEnemy;
             }
 
+            // If the target is still null (meaning none was found), just wander
             if (_target == transform || _target == null)
             {
                 _wanderPoint.position = transform.position;
@@ -46,7 +46,7 @@ public class FriendlyAI : TargetingAI
         // Non-null case (check if the target is dead; if so, look for a new one)
         else if (_target.CompareTag("EnemyTag"))
         {
-            if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = transform;
+            if (!_target.GetComponent<Health>()?.IsAlive() ?? false) _target = transform;
         }
         else if (_target == _wanderPoint && Vector2.Distance(transform.position, _target.position) < _stoppingDistance) _target = transform;
     }
