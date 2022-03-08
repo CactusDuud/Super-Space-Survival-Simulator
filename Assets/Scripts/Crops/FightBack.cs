@@ -14,31 +14,33 @@ using UnityEngine;
 
 public class FightBack : MonoBehaviour
 {
-    [SerializeField] private int attackDamage;
     private Health _currentHealth;
+    private Growth _growth;
+    private GameObject _enemy;
+
+    [SerializeField] private int attackDamage;
     private int _prevHealth;
     private bool _isAttacked;
     private bool _isCooling;
 
-    private GameObject _enemy;
+    [SerializeField] private float _poisonRate = 0.5f;
+
 
 
     //on awake initiate variables
     void Awake()
     {
-        _isAttacked = false;
-        _isCooling = false;
         _currentHealth = GetComponent<Health>();
         _prevHealth = _currentHealth._health;
-        _enemy = null;
+
+        _growth = GetComponent<Growth>();
     }
 
     //override fixedupdate too check if the health is going down or not
     void FixedUpdate()
     {
-
         // if plant has 0 health it no longer fights back
-        if (_currentHealth._health > 0) //&& _isHarvestable)
+        if (_growth.IsHarvestable())
         {
             if (_currentHealth._health < _prevHealth) //being attacked so calling function too fight back
             {
@@ -47,26 +49,17 @@ public class FightBack : MonoBehaviour
                 if (!_isCooling)
                 {
                     _isCooling = true;
-                    StartCoroutine(poisionAttack(0.5f));  /// currentely being called too fast -> need too cooldown on each attack (enemy taking really fast hits)
+                    StartCoroutine(poisionAttack(_poisonRate));  // currentely being called too fast -> need too cooldown on each attack (enemy taking really fast hits)
                 }
 
             }
-            else if (_currentHealth._health == _prevHealth) // not being attacked
+            else // not being attacked
             {
                 _isAttacked = false;
-                if (!_isCooling)
-                {
-                    _isCooling = true;
-                    StartCoroutine(poisionAttack(0.5f));  /// currentely being called too fast -> need too cooldown on each attack (enemy taking really fast hits)
-                }
-            }
-            else if (_currentHealth._health > _prevHealth) //healing maybe
-            {
-                _isAttacked = false;
+                _enemy = null;
                 _prevHealth = _currentHealth._health;
             }
         }
-
     }
 
     //checks if enemy has collidered with plant, plant is being attacked, and if there is currently no other enemy plant if focused on
@@ -84,7 +77,7 @@ public class FightBack : MonoBehaviour
         _prevHealth = _currentHealth._health;
     }
 
-    IEnumerator poisionAttack(float waitTime) // damages the targeted enemy        could cool down when attack made
+    IEnumerator poisionAttack(float waitTime) // damages the targeted enemy
     {
         if (_enemy != null)
         {

@@ -31,34 +31,42 @@ public class TargetingAI : MonoBehaviour
         _movement = GetComponent<Movement>();
         _seeker= GetComponent<Seeker>();
 
+        // Save some filler variables for later reference
         _baseSpeed = _movement.speed;
         _target = transform;
     }
 
     void Start()
     {
+        // Subscribe to day/night to slow down enemies
         GameManager.GetInstance.OnDaytime += DaySlow;
         GameManager.GetInstance.OnNighttime += NightUnslow;
 
+        // Find the first target (just in case)
         FindTarget();
+
+        // Repeatedly update the AI path to point towards the target starting now
         InvokeRepeating("UpdatePath", 0f, _pathUpdateRate);
     }
 
     protected virtual void FixedUpdate()
     {
+        // If there is currently a path...
         if (_path != null)
         {
             // Check if we are already where we want to be
             if (_currentWaypoint < _path.vectorPath.Count)
             {
-                // Move towards our target if it's farther than the stopping distance
+                // If the target exists
                 if (_target != null)
                 {
+                    // Move towards our target
                     if (Vector2.Distance(_target.position, transform.position) > _stoppingDistance)
                         _movement.Move(DetermineDirection().normalized);
                     else
                         _movement.Move(DetermineDirection());
                 }
+                // Otherwise set to a "zero" value (where the AI is)
                 else
                 {
                     _target = transform;
@@ -73,6 +81,7 @@ public class TargetingAI : MonoBehaviour
 
     protected virtual Vector2 DetermineDirection()
     {
+        // Determine the next vector to move in
         return (Vector3)_path.vectorPath[_currentWaypoint] - transform.position;
     }
 
@@ -88,6 +97,7 @@ public class TargetingAI : MonoBehaviour
 
     void OnPathComplete(Path p)
     {
+        // Imma be honest this is just a failsafe dw about it
         if(!p.error)
         {
             _path = p;
@@ -108,18 +118,20 @@ public class TargetingAI : MonoBehaviour
         // Non-null case (check if the target is dead; if so, look for a new one)
         else if (_target.CompareTag("CropTag"))
         {
-            if (!_target.GetComponent<Health>()?.Alive() ?? false) _target = transform;
+            if (!_target.GetComponent<Health>()?.IsAlive() ?? false) _target = transform;
         }
         
     }
 
     protected virtual void DaySlow()
     {
+        // Set speed to a slower one if it's daytime
         _movement.speed = _baseSpeed * _daySpeedPenalty;
     }
 
     protected virtual void NightUnslow()
     {
+        // Reset the speed at night
         _movement.speed = _baseSpeed;
     }
 }

@@ -1,7 +1,5 @@
-// Written by Sage Mahmud
+// Written by Sage Mahmud, Elizabeth Castreje, and Miguel Aleman
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -27,6 +25,7 @@ public class PlayerTool : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Enable the tool for a few frames if the player has pressed the right key
         if (_isUsingTool)
         {
             _useTime -= Time.deltaTime;
@@ -42,17 +41,15 @@ public class PlayerTool : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Damage/harvest hit objects
         if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
         else if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
     }
 
     public void UseTool()
     {
-        if (PauseMenu.GamePaused == true)
-        {
-            return;
-        }
-        if (_isUsingTool == false)
+        // Only use the tool if the game is playing and the button is pressed
+        if (!PauseMenu.GamePaused && !_isUsingTool)
         {
             _isUsingTool = true;
             _useTime = _useDuration;
