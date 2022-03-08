@@ -8,6 +8,9 @@ using TMPro;
 public class HighScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI highscore;
+    [SerializeField] private TextMeshProUGUI GOhighscore;
+
+
 
     private GameManager refGameManager;
     private int number;
@@ -19,6 +22,8 @@ public class HighScoreManager : MonoBehaviour
         // fills in the highest prosparity at start
         number = PlayerPrefs.GetInt("Highscore", 0);
         highscore.text = $"Highest Prosperity: {PlayerPrefs.GetInt("Highscore", 0)}";
+        GOhighscore.text = $"Highest Prosperity: {PlayerPrefs.GetInt("Highscore", 0)}";
+
         refGameManager = GetComponent<GameManager>();
     }
     
@@ -30,6 +35,8 @@ public class HighScoreManager : MonoBehaviour
             PlayerPrefs.SetInt("Highscore", refGameManager.prosperity);
             number = PlayerPrefs.GetInt("Highscore", 0);
             highscore.text = $"Highest Prosperity: {PlayerPrefs.GetInt("Highscore", 0)}";
+            GOhighscore.text = $"Highest Prosperity: {PlayerPrefs.GetInt("Highscore", 0)}";
+
         }
     }
 
