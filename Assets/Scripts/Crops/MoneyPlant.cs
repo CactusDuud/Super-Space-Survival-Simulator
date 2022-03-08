@@ -4,7 +4,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Growth))]
-[RequireComponent(typeof(Health))]
+
 public class MoneyPlant : MonoBehaviour
 {
     // this is the player will gain "gainedProsperity" prosperity after "timeTpProsper" amount of seconds
