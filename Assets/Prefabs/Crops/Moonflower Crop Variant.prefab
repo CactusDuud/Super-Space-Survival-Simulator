@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LightType: 0
+  m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightInnerRadius: 0.2
+  m_PointLightOuterRadius: 1.5
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -143,9 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba28964dc79eaec4bb4c316d67a008b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _growingSprite: {fileID: 0}
-  _harvestableSprite: {fileID: 0}
-  _deadSprite: {fileID: 0}
-  growthDuration: 0
-  _prosperityValue: 0
-  prosperityCost: 0
+  _growingSprite: {fileID: 21300000, guid: 723b681168af0f443a8d71100c092a36, type: 3}
+  _harvestableSprite: {fileID: 21300000, guid: f57441756b8d7054ca05bf7d2dc6c378, type: 3}
+  _deadSprite: {fileID: 21300000, guid: 3ae6c6726c928014ba191c01d33a041d, type: 3}
+  growthDuration: 60
+  _prosperityValue: 24
+  prosperityCost: 7
+  lightDuration: 60
