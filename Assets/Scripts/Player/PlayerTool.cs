@@ -43,7 +43,11 @@ public class PlayerTool : MonoBehaviour
     {
         // Damage/harvest hit objects
         if (other.CompareTag("EnemyTag")) other.GetComponent<Health>()?.Damage(_damage);
-        else if (other.CompareTag("CropTag")) other.GetComponent<Growth>()?.Harvest();
+        else if (other.CompareTag("CropTag"))
+        {
+            other.GetComponent<Growth>()?.Harvest();
+            other.GetComponent<CropDeath>()?.Harvest();
+        }
     }
 
     public void UseTool()

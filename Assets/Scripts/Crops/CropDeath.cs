@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CropDeath : MonoBehaviour
+public class CropDeath : Growth
 {
-    // Start is called before the first frame update
-    void Start()
+
+    
+
+    public override void Harvest()
     {
-        
+        if (_isHarvestable)
+        {
+           if (_health.IsAlive())
+           {
+                GameManager.GetInstance.AddProsperity(_prosperityValue);
+                base.Wither();
+                Destroy(this.gameObject);
+            }
+           else Destroy(this.gameObject);
+
+        }
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }

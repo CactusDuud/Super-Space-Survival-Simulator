@@ -65,12 +65,6 @@ public class PauseMenu : MonoBehaviour
         PauseUI.SetActive(true);
         Time.timeScale = 0.01f;
         GamePaused = true;
-
-
-     //   if (GamePaused == true)
-       // {
-           // GameObject.Find("PlayerTag").GetComponent<PlayerTool>().enabled = false;
-        //}
         
 
     }
@@ -86,6 +80,21 @@ public class PauseMenu : MonoBehaviour
     public void Help()
     {
         HelpMenu.OpenHelpMenu();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GamePaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
     }
 
 }

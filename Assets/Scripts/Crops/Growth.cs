@@ -11,18 +11,18 @@ public class Growth : MonoBehaviour
     [SerializeField] Sprite _harvestableSprite;
     [SerializeField] Sprite _deadSprite;
     SpriteRenderer _spriteRenderer;
-    Health _health;
+    protected Health _health;
 
     [Header("Attributes")]
     public float growthDuration;
-    [SerializeField] int _prosperityValue;
+    [SerializeField] protected int _prosperityValue;
     public int prosperityCost;
 
     [Header("Statistics")]
     float _growthTimer;
     bool _canGrow;
     protected bool _isWithered;
-    bool _isHarvestable;
+    protected bool _isHarvestable;
 
 
 
