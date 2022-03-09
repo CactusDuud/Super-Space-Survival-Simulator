@@ -1,4 +1,4 @@
-//Code written by Sage Mahmud & Sebastian Carbajal
+// Code written by Sage Mahmud & Sebastian Carbajal
 
 using UnityEngine;
 

@@ -1,5 +1,6 @@
+// Written by Sebastian Carbajal and Sage Mahmud
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -9,10 +10,14 @@ public class GlowPlant : Growth
 {
     Light2D light1;
     float defLight;
+    [SerializeField] float lightDuration;
 
 
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
+
         light1 = GetComponent<Light2D>();
         defLight = light1.intensity;
         light1.intensity = 0;
@@ -27,21 +32,12 @@ public class GlowPlant : Growth
             if (_health.IsAlive())
             {
                 _spriteRenderer.sprite = _growingSprite;
-                light1.intensity = defLight;
+                StartCoroutine(tempLight(lightDuration));
                 _isHarvestable = false;
                 GameManager.GetInstance.AddProsperity(_prosperityValue);
                 _growthTimer = 0;
             }
             else Destroy(this.gameObject);
-        }
-
-        if (IsHarvestable())
-        {
-            light1.intensity = defLight;
-        }
-        else
-        {
-            light1.intensity = 0;
         }
     }
 

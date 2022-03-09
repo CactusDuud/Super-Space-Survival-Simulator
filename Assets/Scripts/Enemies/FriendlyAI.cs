@@ -11,6 +11,8 @@ public class FriendlyAI : TargetingAI
     [SerializeField] float _sightRange = 2.5f;
     [SerializeField] float _wanderRange = 6f;
 
+
+
     protected override void Awake()
     {
         base.Awake();
