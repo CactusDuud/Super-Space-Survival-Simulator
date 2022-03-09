@@ -20,7 +20,6 @@ public class CropDeath : Growth
            if (_health.IsAlive())
            {
                 GameManager.GetInstance.AddProsperity(_prosperityValue);
-                base.Wither();
                 Destroy(this.gameObject);
             }
            else Destroy(this.gameObject);

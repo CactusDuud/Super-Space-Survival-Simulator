@@ -1,4 +1,4 @@
-// written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman
+// written by Sage Mahmud, Elizabeth Castreje, Esmeralda Juarez, Miguel Aleman, Sebastian Carbajal
 
 using UnityEngine;
 using UnityEngine.InputSystem;

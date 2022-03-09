@@ -7,10 +7,10 @@ using UnityEngine;
 public class Growth : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Sprite _growingSprite;
+    [SerializeField] protected Sprite _growingSprite;
     [SerializeField] Sprite _harvestableSprite;
     [SerializeField] Sprite _deadSprite;
-    SpriteRenderer _spriteRenderer;
+    protected SpriteRenderer _spriteRenderer;
     protected Health _health;
 
     [Header("Attributes")]
@@ -19,7 +19,7 @@ public class Growth : MonoBehaviour
     public int prosperityCost;
 
     [Header("Statistics")]
-    float _growthTimer;
+    protected float _growthTimer;
     bool _canGrow;
     protected bool _isWithered;
     protected bool _isHarvestable;
