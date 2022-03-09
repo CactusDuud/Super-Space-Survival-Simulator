@@ -18,7 +18,14 @@ public class SpawnPlayers : MonoBehaviour
     [SerializeField] Transform _player2Spawn;
 
     [Header("Attributes")]
-    public bool _isOnline;
+    /*
+    Okay this is gross but
+    0 - Singleplayer
+    1 - Multiplayer
+    2 - Multiplayer Online
+    */
+    int _gameMode;
+    bool _isLocalMultiplayer;
     bool _p1Exists;
 
     
@@ -26,9 +33,11 @@ public class SpawnPlayers : MonoBehaviour
     void Awake()
     {
         if (_instance != null && _instance != this) Destroy(this.gameObject);
-        else _instance = this; 
+        else _instance = this;
 
-        if (_isOnline)
+        _gameMode = PlayerPrefs.GetInt("gameType", 0);
+
+        if (_gameMode == 2)
         {
             if (!_p1Exists)
             {
@@ -48,9 +57,12 @@ public class SpawnPlayers : MonoBehaviour
             var p1 = PlayerInput.Instantiate(_pf_player1, controlScheme: "Player1", pairWithDevice: Keyboard.current);
             p1.transform.position = _player1Spawn.position;
 
-            // Spawn player 2
-            var p2 = PlayerInput.Instantiate(_pf_player2, controlScheme: "Player2", pairWithDevice: Keyboard.current);
-            p2.transform.position = _player2Spawn.position;
+            if (_gameMode == 1)
+            {
+                // Spawn player 2
+                var p2 = PlayerInput.Instantiate(_pf_player2, controlScheme: "Player2", pairWithDevice: Keyboard.current);
+                p2.transform.position = _player2Spawn.position;
+            }
 
             // Spawn an awesome friend
             GameObject.Instantiate(_pf_friend, transform.position, Quaternion.identity);

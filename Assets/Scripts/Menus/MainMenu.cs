@@ -25,5 +25,15 @@ public class MainMenu : MonoBehaviour
         Debug.Log("quit");
         Application.Quit();
     }
+
+    public void SetGameMode(int mode)
+    {
+        /*
+        0 - Singleplayer
+        1 - Multiplayer
+        2 - Multiplayer Online
+        */
+        PlayerPrefs.SetInt("gameType", mode);
+    }
 }
 
