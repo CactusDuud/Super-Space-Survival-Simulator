@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: d6f43d53063fdb14e83f63162e81aa3b, type: 3}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6989399462569418419, guid: 59501f40abf670e48946519d742b963d, type: 3}
       propertyPath: _deadSprite
@@ -89,26 +89,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59501f40abf670e48946519d742b963d, type: 3}
---- !u!1 &8519894031690272057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6989399462569418430, guid: 59501f40abf670e48946519d742b963d, type: 3}
-  m_PrefabInstance: {fileID: 1640413885689172871}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6964364485961041976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8519894031690272057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd65e71da75044c8993cc4e6e9f9c73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _growingSprite: {fileID: 21300000, guid: 723b681168af0f443a8d71100c092a36, type: 3}
-  _harvestableSprite: {fileID: 21300000, guid: d6f43d53063fdb14e83f63162e81aa3b, type: 3}
-  _deadSprite: {fileID: 21300000, guid: 73b5452cbe9f6a545b161be0ad039cf0, type: 3}
-  growthDuration: 5
-  _prosperityValue: 1
-  prosperityCost: 1
