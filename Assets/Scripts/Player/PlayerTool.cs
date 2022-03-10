@@ -47,6 +47,7 @@ public class PlayerTool : MonoBehaviour
         {
             other.GetComponent<Growth>()?.Harvest();
             other.GetComponent<CropDeath>()?.Harvest();
+            other.GetComponent<GlowPlant>()?.Harvest();
         }
     }
 

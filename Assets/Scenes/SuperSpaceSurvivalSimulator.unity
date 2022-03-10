@@ -19793,7 +19793,6 @@ MonoBehaviour:
   _pf_friend: {fileID: 279186584849886977, guid: a8e03896ceda4fd4a84d9d809819f3fb, type: 3}
   _player1Spawn: {fileID: 1155462779}
   _player2Spawn: {fileID: 371268710}
-  _isOnline: 0
 --- !u!1 &1155462778
 GameObject:
   m_ObjectHideFlags: 0
